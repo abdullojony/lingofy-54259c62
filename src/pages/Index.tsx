@@ -5,13 +5,18 @@ import CourseCard from '../components/CourseCard';
 import ProfileWidget from '../components/ProfileWidget';
 
 const Index = () => {
-  const courses = [
-    { language: "Spanish", flagEmoji: "🇪🇸", progress: 45 },
-    { language: "French", flagEmoji: "🇫🇷", progress: 20 },
-    { language: "Japanese", flagEmoji: "🇯🇵", progress: 10, isNew: true },
-    { language: "German", flagEmoji: "🇩🇪", progress: 5 },
-    { language: "Italian", flagEmoji: "🇮🇹", progress: 0, isNew: true },
-    { language: "Korean", flagEmoji: "🇰🇷", progress: 0 }
+  const languages = [
+    { id: 1, name: "Spanish", icon: "🇪🇸", progress: 45, type: 'language' },
+    { id: 2, name: "French", icon: "🇫🇷", progress: 20, type: 'language' },
+    { id: 3, name: "Japanese", icon: "🇯🇵", progress: 10, isNew: true, type: 'language' },
+    { id: 4, name: "German", icon: "🇩🇪", progress: 5, type: 'language' }
+  ];
+
+  const subjects = [
+    { id: 1, name: "Mathematics", icon: "math", progress: 30, type: 'subject' },
+    { id: 2, name: "Programming", icon: "programming", progress: 15, isNew: true, type: 'subject' },
+    { id: 3, name: "Science", icon: "science", progress: 25, type: 'subject' },
+    { id: 4, name: "History", icon: "history", progress: 5, isNew: true, type: 'subject' }
   ];
 
   return (
@@ -21,24 +26,41 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-duolingo-dark mb-4">
-            Learn a language with Lingofy
+            Learn anything with Lingofy
           </h1>
           <p className="text-lg text-duolingo-dark/70 max-w-2xl mx-auto">
-            Fun, effective lessons that will help you master a new language in no time!
+            Explore languages, academic subjects, and professional skills with our interactive lessons!
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div className="md:col-span-2 lg:col-span-3">
-            <h2 className="text-2xl font-bold mb-4">Your courses</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {courses.map((course) => (
+            <h2 className="text-2xl font-bold mb-4">Languages</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {languages.map((language) => (
                 <CourseCard
-                  key={course.language}
-                  language={course.language}
-                  flagEmoji={course.flagEmoji}
-                  progress={course.progress}
-                  isNew={course.isNew}
+                  key={language.id}
+                  id={language.id}
+                  name={language.name}
+                  icon={language.icon}
+                  progress={language.progress}
+                  isNew={language.isNew}
+                  type="language"
+                />
+              ))}
+            </div>
+            
+            <h2 className="text-2xl font-bold mb-4">Subjects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {subjects.map((subject) => (
+                <CourseCard
+                  key={subject.id}
+                  id={subject.id}
+                  name={subject.name}
+                  icon={subject.icon}
+                  progress={subject.progress}
+                  isNew={subject.isNew}
+                  type="subject"
                 />
               ))}
             </div>

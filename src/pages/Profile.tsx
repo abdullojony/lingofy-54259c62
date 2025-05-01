@@ -9,16 +9,16 @@ const Profile = () => {
     { title: "3-Day Streak", description: "Complete lessons 3 days in a row", emoji: "🔥", completed: true },
     { title: "Perfect Score", description: "Complete a lesson without mistakes", emoji: "⭐", completed: true },
     { title: "Language Explorer", description: "Try 3 different languages", emoji: "🌍", completed: false },
-    { title: "Conversation Master", description: "Complete all conversation lessons", emoji: "💬", completed: false },
-    { title: "Grammar Guru", description: "Complete all grammar lessons", emoji: "📚", completed: false },
+    { title: "Video Master", description: "Watch 10 video lessons", emoji: "📹", completed: false },
+    { title: "Quiz Champion", description: "Get perfect scores on 5 quizzes", emoji: "🏆", completed: false },
   ];
 
   const recentActivity = [
     { date: "Today", action: "Completed Spanish Basics lesson", xp: 20 },
-    { date: "Today", action: "Earned 'Perfect Score' achievement", xp: 50 },
-    { date: "Yesterday", action: "Completed French Introduction", xp: 15 },
+    { date: "Today", action: "Watched Mathematics video module", xp: 15 },
+    { date: "Yesterday", action: "Completed Programming quiz", xp: 25 },
     { date: "2 days ago", action: "Practiced Japanese characters", xp: 10 },
-    { date: "3 days ago", action: "Started German course", xp: 5 },
+    { date: "3 days ago", action: "Started Science course", xp: 5 },
   ];
 
   return (
@@ -91,22 +91,46 @@ const Profile = () => {
             <ProfileWidget streakDays={12} xp={4320} gems={750} />
             
             <div className="mt-8 bg-white shadow-md rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-4">Language Progress</h3>
-              {[
-                { language: "Spanish", progress: 45 },
-                { language: "French", progress: 20 },
-                { language: "Japanese", progress: 10 }
-              ].map((course) => (
-                <div key={course.language} className="mb-4 last:mb-0">
-                  <div className="flex justify-between mb-1">
-                    <span className="font-medium">{course.language}</span>
-                    <span className="text-sm text-duolingo-dark/70">{course.progress}%</span>
+              <h3 className="text-xl font-bold mb-4">Learning Progress</h3>
+              
+              <div className="mb-6">
+                <h4 className="font-medium text-duolingo-blue mb-2">Languages</h4>
+                {[
+                  { name: "Spanish", progress: 45 },
+                  { name: "French", progress: 20 },
+                  { name: "Japanese", progress: 10 }
+                ].map((course) => (
+                  <div key={course.name} className="mb-4 last:mb-0">
+                    <div className="flex justify-between mb-1">
+                      <span className="font-medium">{course.name}</span>
+                      <span className="text-sm text-duolingo-dark/70">{course.progress}%</span>
+                    </div>
+                    <div className="duo-progress">
+                      <div className="duo-progress-bar" style={{ width: `${course.progress}%` }}></div>
+                    </div>
                   </div>
-                  <div className="duo-progress">
-                    <div className="duo-progress-bar" style={{ width: `${course.progress}%` }}></div>
+                ))}
+              </div>
+              
+              <div>
+                <h4 className="font-medium text-duolingo-green mb-2">Subjects</h4>
+                {[
+                  { name: "Mathematics", progress: 30 },
+                  { name: "Programming", progress: 15 },
+                  { name: "Science", progress: 25 }
+                ].map((course) => (
+                  <div key={course.name} className="mb-4 last:mb-0">
+                    <div className="flex justify-between mb-1">
+                      <span className="font-medium">{course.name}</span>
+                      <span className="text-sm text-duolingo-dark/70">{course.progress}%</span>
+                    </div>
+                    <div className="duo-progress">
+                      <div className="duo-progress-bar" style={{ width: `${course.progress}%` }}></div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              
               <button className="duo-btn w-full mt-4">Continue Learning</button>
             </div>
           </div>
