@@ -19,3 +19,11 @@ export interface Module {
   isActive: boolean;
   subject: string;
 }
+
+export interface Quiz {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  timestamp?: number; // For video embedded quizzes, time in seconds
+}
