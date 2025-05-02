@@ -18,6 +18,13 @@ export interface Module {
   isCompleted: boolean;
   isActive: boolean;
   subject: string;
+  // Added to support multiple module content types
+  content?: {
+    videoUrl?: string;
+    description?: string;
+    quizzes?: Quiz[];
+    readingContent?: string[];
+  };
 }
 
 export interface Quiz {

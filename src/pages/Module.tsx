@@ -3,21 +3,100 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import VideoQuiz from '../components/VideoQuiz';
-import { Quiz } from '../types/models';
+import { Module as ModuleType, Quiz } from '../types/models';
 import { toast } from 'sonner';
 
-interface VideoContent {
-  title: string;
-  url: string;
-  description: string;
-  duration: string;
-  quizzes?: Quiz[];
-}
-
-interface ReadingContent {
-  title: string;
-  content: string[];
-}
+// Sample modules data
+const modules: Record<string, ModuleType> = {
+  "1": {
+    id: 1,
+    title: "Introduction to Arabic",
+    type: "video",
+    isCompleted: false,
+    isActive: true,
+    subject: "Arabic",
+    content: {
+      videoUrl: "https://www.youtube.com/embed/sOQvSkC--mw?enablejsapi=1",
+      description: "Learn the basics of Arabic alphabet and pronunciation in this comprehensive introduction.",
+      quizzes: [
+        {
+          id: 1,
+          question: "How many letters are in the Arabic alphabet?",
+          options: ["22", "26", "28", "29"],
+          correctAnswer: 2,
+          timestamp: 30
+        },
+        {
+          id: 2,
+          question: "Which direction is Arabic written?",
+          options: ["Left to right", "Right to left", "Top to bottom", "Bottom to top"],
+          correctAnswer: 1,
+          timestamp: 60
+        }
+      ]
+    }
+  },
+  "2": {
+    id: 2,
+    title: "Arabic Greetings",
+    type: "reading",
+    isCompleted: false,
+    isActive: true,
+    subject: "Arabic",
+    content: {
+      readingContent: [
+        "Arabic is the official language of 26 states and is spoken by more than 420 million people worldwide.",
+        "## Common Greetings",
+        "- **As-salaam 'alykum** (السلام عليكم): Peace be upon you - The most common greeting in Arabic.",
+        "- **Ahlan wa sahlan** (أهلاً و سهلاً): Welcome - A warm greeting used to welcome someone.",
+        "- **Sabah al-khair** (صباح الخير): Good morning - Used until noon.",
+        "- **Masa al-khair** (مساء الخير): Good evening - Used after noon.",
+        "## Responding to Greetings",
+        "- When someone says 'As-salaam 'alykum', you should respond with 'Wa 'alykum as-salaam' (وعليكم السلام) which means 'And upon you be peace'.",
+        "- For 'Sabah al-khair', respond with 'Sabah an-noor' (صباح النور) meaning 'Morning of light'.",
+        "Learning these basic greetings will help you make a good first impression when speaking with Arabic speakers."
+      ]
+    }
+  },
+  "3": {
+    id: 3,
+    title: "Basic Arabic Phrases Quiz",
+    type: "quiz",
+    isCompleted: false,
+    isActive: true,
+    subject: "Arabic",
+    content: {
+      quizzes: [
+        {
+          id: 1,
+          question: "How do you say 'Thank you' in Arabic?",
+          options: ["Afwan", "Shukran", "Ma'a salama", "Min fadlak"],
+          correctAnswer: 1
+        },
+        {
+          id: 2,
+          question: "Which phrase means 'My name is...' in Arabic?",
+          options: ["Ana min...", "Ismi...", "Ana...", "Kayfa halak"],
+          correctAnswer: 1
+        },
+        {
+          id: 3,
+          question: "What does 'Ma'a salama' mean?",
+          options: ["Good morning", "Please", "Goodbye", "You're welcome"],
+          correctAnswer: 2
+        }
+      ]
+    }
+  },
+  "4": {
+    id: 4,
+    title: "Arabic Script Practice",
+    type: "practice",
+    isCompleted: false,
+    isActive: true,
+    subject: "Arabic"
+  }
+};
 
 const Module = () => {
   const { id } = useParams();
@@ -30,42 +109,15 @@ const Module = () => {
   const [showQuiz, setShowQuiz] = useState(false);
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [currentModule, setCurrentModule] = useState<ModuleType | null>(null);
   
-  // Sample video content
-  const videoContent: VideoContent = {
-    title: "Introduction to Mathematics",
-    url: "https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1", // Modified URL to enable JS API
-    description: "This video introduces the fundamental concepts of mathematics that you'll need throughout this course.",
-    duration: "10:30",
-    quizzes: [
-      {
-        id: 1,
-        question: "What is the square root of 9?",
-        options: ["1", "3", "9", "27"],
-        correctAnswer: 1,
-        timestamp: 10 // Show quiz after 10 seconds
-      },
-      {
-        id: 2,
-        question: "Which of these is not a prime number?",
-        options: ["2", "3", "5", "9"],
-        correctAnswer: 3,
-        timestamp: 30 // Show quiz after 30 seconds
-      }
-    ]
-  };
+  // Get current module data
+  useEffect(() => {
+    if (id && modules[id]) {
+      setCurrentModule(modules[id]);
+    }
+  }, [id]);
   
-  // Sample reading content
-  const readingContent: ReadingContent = {
-    title: "Basic Programming Concepts",
-    content: [
-      "Programming is the process of creating instructions that tell a computer how to perform a task.",
-      "Variables are containers for storing data values. In most programming languages, you need to declare a variable before you can use it.",
-      "Functions are blocks of code designed to perform a particular task. They are executed when they are called.",
-      "Conditionals allow you to make decisions in your code. The most common form is the if statement."
-    ]
-  };
-
   // Setup YouTube API and event listeners
   useEffect(() => {
     // Load YouTube iframe API
@@ -99,7 +151,7 @@ const Module = () => {
   
   // Update current time and check for quizzes
   useEffect(() => {
-    if (!player || type !== 'video') return;
+    if (!player || !currentModule || currentModule.type !== 'video') return;
     
     const timeUpdateInterval = setInterval(() => {
       try {
@@ -107,7 +159,7 @@ const Module = () => {
         setCurrentTime(currentSeconds);
         
         // Check if we should show a quiz
-        const quizToShow = videoContent.quizzes?.find(quiz => {
+        const quizToShow = currentModule.content?.quizzes?.find(quiz => {
           const timestamp = quiz.timestamp || 0;
           return currentSeconds >= timestamp && currentSeconds < timestamp + 1;
         });
@@ -126,7 +178,7 @@ const Module = () => {
     return () => {
       clearInterval(timeUpdateInterval);
     };
-  }, [player, showQuiz, activeQuiz, type]);
+  }, [player, showQuiz, activeQuiz, currentModule]);
   
   const onPlayerReady = (event: any) => {
     // Player is ready
@@ -163,24 +215,36 @@ const Module = () => {
   };
   
   const renderModuleContent = () => {
-    switch(type) {
+    if (!currentModule) {
+      return (
+        <div className="bg-white rounded-2xl shadow-md p-6">
+          <h1 className="text-2xl font-bold mb-6">Module Not Found</h1>
+          <p>Sorry, we couldn't find the module you're looking for.</p>
+          <button onClick={() => navigate('/')} className="duo-btn mt-4">
+            Go Back Home
+          </button>
+        </div>
+      );
+    }
+    
+    switch(currentModule.type) {
       case 'video':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-4">{videoContent.title}</h1>
+            <h1 className="text-2xl font-bold mb-4">{currentModule.title}</h1>
             <div className="aspect-video bg-duolingo-gray rounded-lg overflow-hidden mb-4">
               <iframe 
                 id="youtube-player"
                 ref={videoRef}
                 className="w-full h-full"
-                src={videoContent.url} 
-                title={videoContent.title}
+                src={currentModule.content?.videoUrl} 
+                title={currentModule.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="text-sm text-duolingo-dark/70 mb-4">Duration: {videoContent.duration}</div>
-            <p className="mb-6">{videoContent.description}</p>
+            <div className="text-sm text-duolingo-dark/70 mb-4">Topic: Arabic Learning</div>
+            <p className="mb-6">{currentModule.content?.description}</p>
             <div className="flex justify-between">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
                 Back to Lessons
@@ -205,10 +269,18 @@ const Module = () => {
       case 'reading':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">{readingContent.title}</h1>
+            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
             <div className="space-y-4 mb-8">
-              {readingContent.content.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+              {currentModule.content?.readingContent?.map((paragraph, index) => (
+                <div key={index} className="prose max-w-none">
+                  {paragraph.startsWith('##') ? (
+                    <h2 className="text-xl font-bold mt-6 mb-3">{paragraph.replace('##', '').trim()}</h2>
+                  ) : paragraph.startsWith('-') ? (
+                    <div className="pl-4" dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                  ) : (
+                    <p>{paragraph}</p>
+                  )}
+                </div>
               ))}
             </div>
             <div className="flex justify-between">
@@ -222,22 +294,57 @@ const Module = () => {
           </div>
         );
         
+      case 'quiz':
+        return (
+          <div className="bg-white rounded-2xl shadow-md p-6">
+            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
+            <div className="space-y-6">
+              {currentModule.content?.quizzes?.map((quiz) => (
+                <div key={quiz.id} className="bg-duolingo-light p-6 rounded-lg">
+                  <h3 className="font-bold text-lg mb-4">{quiz.question}</h3>
+                  <div className="space-y-3">
+                    {quiz.options.map((option, index) => (
+                      <div key={index} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-duolingo-light cursor-pointer">
+                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary">
+                          <div className="h-2.5 w-2.5 rounded-full bg-primary" />
+                        </div>
+                        <div className="font-normal">{option}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 text-right">
+                    <button className="duo-btn">Check Answer</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-between mt-8">
+              <button onClick={() => navigate(-1)} className="duo-btn-outline">
+                Back to Lessons
+              </button>
+              <button onClick={() => navigate('/')} className="duo-btn">
+                Complete & Continue
+              </button>
+            </div>
+          </div>
+        );
+        
       case 'practice':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">Practice Session</h1>
+            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
             <div className="bg-duolingo-light p-6 rounded-lg mb-8">
-              <h2 className="font-bold mb-4">Exercise: Apply what you've learned</h2>
-              <p className="mb-6">Complete the following exercises to practice the concepts covered in this module.</p>
+              <h2 className="font-bold mb-4">Practice Exercise: Arabic Script</h2>
+              <p className="mb-6">Complete the following exercises to practice writing Arabic letters.</p>
               <div className="space-y-4">
                 <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 1: Solve the problem using the technique demonstrated.</p>
+                  <p className="font-medium">Exercise 1: Practice writing the letters ا (Alif), ب (Ba), ت (Ta).</p>
                 </div>
                 <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 2: Explain the underlying principles in your own words.</p>
+                  <p className="font-medium">Exercise 2: Connect the following letters to form words.</p>
                 </div>
                 <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 3: Apply the concept to a new situation.</p>
+                  <p className="font-medium">Exercise 3: Read and pronounce the following short phrases.</p>
                 </div>
               </div>
             </div>
