@@ -22,14 +22,14 @@ const modules: Record<string, ModuleType> = {
         {
           id: 1,
           question: "How many letters are in the Arabic alphabet?",
-          options: ["22", "26", "28", "29"],
+          options: ["22 - ٢٢", "26 - ٢٦", "28 - ٢٨", "29 - ٢٩"],
           correctAnswer: 2,
           timestamp: 30
         },
         {
           id: 2,
           question: "Which direction is Arabic written?",
-          options: ["Left to right", "Right to left", "Top to bottom", "Bottom to top"],
+          options: ["Left to right - من اليسار إلى اليمين", "Right to left - من اليمين إلى اليسار", "Top to bottom - من الأعلى إلى الأسفل", "Bottom to top - من الأسفل إلى الأعلى"],
           correctAnswer: 1,
           timestamp: 60
         }
@@ -70,19 +70,19 @@ const modules: Record<string, ModuleType> = {
         {
           id: 1,
           question: "How do you say 'Thank you' in Arabic?",
-          options: ["Afwan", "Shukran", "Ma'a salama", "Min fadlak"],
+          options: ["Afwan - عفوا", "Shukran - شكرا", "Ma'a salama - مع السلامة", "Min fadlak - من فضلك"],
           correctAnswer: 1
         },
         {
           id: 2,
           question: "Which phrase means 'My name is...' in Arabic?",
-          options: ["Ana min...", "Ismi...", "Ana...", "Kayfa halak"],
+          options: ["Ana min... - أنا من", "Ismi... - اسمي", "Ana... - أنا", "Kayfa halak - كيف حالك"],
           correctAnswer: 1
         },
         {
           id: 3,
           question: "What does 'Ma'a salama' mean?",
-          options: ["Good morning", "Please", "Goodbye", "You're welcome"],
+          options: ["Good morning - صباح الخير", "Please - من فضلك", "Goodbye - مع السلامة", "You're welcome - على الرحب والسعة"],
           correctAnswer: 2
         }
       ]

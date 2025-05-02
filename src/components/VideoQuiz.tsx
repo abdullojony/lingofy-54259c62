@@ -35,7 +35,8 @@ const VideoQuiz: React.FC<VideoQuizProps> = ({ quiz, open, onClose, onComplete }
     if (isCorrect) {
       toast.success("Correct answer! Well done!");
     } else {
-      toast.error("Not quite right. The correct answer was: " + quiz.options[quiz.correctAnswer]);
+      const correctOptionText = quiz.options[quiz.correctAnswer].split(' - ')[0];
+      toast.error(`Not quite right. The correct answer was: ${correctOptionText}`);
     }
     
     setTimeout(() => {
@@ -73,7 +74,9 @@ const VideoQuiz: React.FC<VideoQuizProps> = ({ quiz, open, onClose, onComplete }
                           <FormControl>
                             <RadioGroupItem value={index.toString()} />
                           </FormControl>
-                          <FormLabel className="font-normal cursor-pointer w-full">{option}</FormLabel>
+                          <FormLabel className="font-normal cursor-pointer w-full rtl:text-right">
+                            {option}
+                          </FormLabel>
                         </FormItem>
                       ))}
                     </RadioGroup>
