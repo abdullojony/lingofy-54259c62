@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Video, List } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
+import { Progress } from './ui/progress';
 
 interface CourseCardProps {
   id: number;
@@ -50,26 +51,24 @@ const CourseCard: React.FC<CourseCardProps> = ({
   return (
     <div 
       onClick={handleClick}
-      className="duo-card cursor-pointer flex flex-col items-center"
+      className="duo-card cursor-pointer flex flex-col items-center relative"
     >
+      {/* Progress bar in top right corner */}
+      <div className="absolute top-3 right-3 flex flex-col items-end">
+        <Progress value={progress} className="w-24 h-2 mb-1" />
+        <p className="text-xs text-duolingo-dark/70">
+          {progress}%
+        </p>
+      </div>
+
       {renderIcon()}
       <h3 className="text-xl font-bold mb-2">{name}</h3>
       
       {isNew && (
-        <span className="bg-duolingo-purple text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
+        <span className="bg-duolingo-purple text-white text-xs font-bold px-2 py-1 rounded-full">
           NEW
         </span>
       )}
-      
-      <div className="w-full duo-progress mt-2">
-        <div 
-          className="duo-progress-bar" 
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      <p className="text-sm text-duolingo-dark/70 mt-2">
-        {progress}% complete
-      </p>
     </div>
   );
 };
