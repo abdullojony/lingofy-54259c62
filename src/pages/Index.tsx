@@ -6,36 +6,36 @@ import ProfileWidget from '../components/ProfileWidget';
 
 const Index = () => {
   const languages = [
-    { id: 1, name: "Spanish", icon: "🇪🇸", progress: 45, type: 'language' },
-    { id: 2, name: "French", icon: "🇫🇷", progress: 20, type: 'language' },
-    { id: 3, name: "Japanese", icon: "🇯🇵", progress: 10, isNew: true, type: 'language' },
-    { id: 4, name: "German", icon: "🇩🇪", progress: 5, type: 'language' }
+    { id: 1, name: "Испанский", icon: "🇪🇸", progress: 45, type: 'language' },
+    { id: 2, name: "Французский", icon: "🇫🇷", progress: 20, type: 'language' },
+    { id: 3, name: "Японский", icon: "🇯🇵", progress: 10, isNew: true, type: 'language' },
+    { id: 4, name: "Немецкий", icon: "🇩🇪", progress: 5, type: 'language' }
   ];
 
   const subjects = [
-    { id: 1, name: "Mathematics", icon: "math", progress: 30, type: 'subject' },
-    { id: 2, name: "Programming", icon: "programming", progress: 15, isNew: true, type: 'subject' },
-    { id: 3, name: "Science", icon: "science", progress: 25, type: 'subject' },
-    { id: 4, name: "History", icon: "history", progress: 5, isNew: true, type: 'subject' }
+    { id: 1, name: "Математика", icon: "math", progress: 30, type: 'subject' },
+    { id: 2, name: "Программирование", icon: "programming", progress: 15, isNew: true, type: 'subject' },
+    { id: 3, name: "Наука", icon: "science", progress: 25, type: 'subject' },
+    { id: 4, name: "История", icon: "history", progress: 5, isNew: true, type: 'subject' }
   ];
 
   return (
-    <div className="min-h-screen bg-duolingo-light">
+    <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
       <NavBar />
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-duolingo-dark mb-4">
-            Learn anything with Lingofy
+          <h1 className="text-3xl md:text-4xl font-bold text-duolingo-dark mb-4 dark:text-gray-100">
+            Учись чему угодно с Линговай
           </h1>
-          <p className="text-lg text-duolingo-dark/70 max-w-2xl mx-auto">
-            Explore languages, academic subjects, and professional skills with our interactive lessons!
+          <p className="text-lg text-duolingo-dark/70 max-w-2xl mx-auto dark:text-gray-400">
+            Изучайте языки, академические предметы и профессиональные навыки с нашими интерактивными уроками!
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div className="md:col-span-2 lg:col-span-3">
-            <h2 className="text-2xl font-bold mb-4">Languages</h2>
+            <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Языки</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {languages.map((language) => (
                 <CourseCard
@@ -50,7 +50,7 @@ const Index = () => {
               ))}
             </div>
             
-            <h2 className="text-2xl font-bold mb-4">Subjects</h2>
+            <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Предметы</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {subjects.map((subject) => (
                 <CourseCard
@@ -70,17 +70,17 @@ const Index = () => {
             <div className="sticky top-20">
               <ProfileWidget streakDays={12} xp={4320} gems={750} />
               
-              <div className="mt-6 bg-white shadow-md rounded-2xl p-6">
-                <h3 className="text-xl font-bold mb-4">Daily Goal</h3>
+              <div className="mt-6 bg-white shadow-md rounded-2xl p-6 dark:bg-gray-800">
+                <h3 className="text-xl font-bold mb-4">Дневная цель</h3>
                 <div className="duo-progress mb-3">
                   <div className="duo-progress-bar w-1/2"></div>
                 </div>
-                <div className="flex justify-between text-sm text-duolingo-dark/70">
-                  <span>10 XP</span>
-                  <span>/ 20 XP</span>
+                <div className="flex justify-between text-sm text-duolingo-dark/70 dark:text-gray-400">
+                  <span>10 опыта</span>
+                  <span>/ 20 опыта</span>
                 </div>
                 <button className="duo-btn w-full mt-4">
-                  Continue Learning
+                  Продолжить обучение
                 </button>
               </div>
             </div>

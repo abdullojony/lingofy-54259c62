@@ -33,10 +33,10 @@ const VideoQuiz: React.FC<VideoQuizProps> = ({ quiz, open, onClose, onComplete }
     const isCorrect = selectedAnswer === quiz.correctAnswer;
     
     if (isCorrect) {
-      toast.success("Correct answer! Well done!");
+      toast.success("Правильный ответ! Молодец!");
     } else {
       const correctOptionText = quiz.options[quiz.correctAnswer].split(' - ')[0];
-      toast.error(`Not quite right. The correct answer was: ${correctOptionText}`);
+      toast.error(`Не совсем верно. Правильный ответ: ${correctOptionText}`);
     }
     
     setTimeout(() => {
@@ -50,7 +50,7 @@ const VideoQuiz: React.FC<VideoQuizProps> = ({ quiz, open, onClose, onComplete }
     <Dialog open={open} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">Quick Quiz!</DialogTitle>
+          <DialogTitle className="text-xl font-bold">Быстрый тест!</DialogTitle>
         </DialogHeader>
         
         <div className="py-4">
@@ -90,7 +90,7 @@ const VideoQuiz: React.FC<VideoQuizProps> = ({ quiz, open, onClose, onComplete }
                   className="duo-btn"
                   disabled={!form.watch("answer") || hasSubmitted}
                 >
-                  {hasSubmitted ? "Checking..." : "Submit Answer"}
+                  {hasSubmitted ? "Проверяем..." : "Отправить ответ"}
                 </button>
               </div>
             </form>

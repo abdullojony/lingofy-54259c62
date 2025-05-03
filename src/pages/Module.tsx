@@ -10,26 +10,26 @@ import { toast } from 'sonner';
 const modules: Record<string, ModuleType> = {
   "1": {
     id: 1,
-    title: "Introduction to Arabic",
+    title: "Введение в арабский",
     type: "video",
     isCompleted: false,
     isActive: true,
-    subject: "Arabic",
+    subject: "Арабский",
     content: {
       videoUrl: "https://www.youtube.com/embed/sOQvSkC--mw?enablejsapi=1",
-      description: "Learn the basics of Arabic alphabet and pronunciation in this comprehensive introduction.",
+      description: "Изучите основы арабского алфавита и произношения в этом комплексном введении.",
       quizzes: [
         {
           id: 1,
-          question: "How many letters are in the Arabic alphabet?",
+          question: "Сколько букв в арабском алфавите?",
           options: ["22 - ٢٢", "26 - ٢٦", "28 - ٢٨", "29 - ٢٩"],
           correctAnswer: 2,
           timestamp: 30
         },
         {
           id: 2,
-          question: "Which direction is Arabic written?",
-          options: ["Left to right - من اليسار إلى اليمين", "Right to left - من اليمين إلى اليسار", "Top to bottom - من الأعلى إلى الأسفل", "Bottom to top - من الأسفل إلى الأعلى"],
+          question: "В каком направлении пишется арабский текст?",
+          options: ["Слева направо - من اليسار إلى اليمين", "Справа налево - من اليمين إلى اليسار", "Сверху вниз - من الأعلى إلى الأسفل", "Снизу вверх - من الأسفل إلى الأعلى"],
           correctAnswer: 1,
           timestamp: 60
         }
@@ -38,51 +38,51 @@ const modules: Record<string, ModuleType> = {
   },
   "2": {
     id: 2,
-    title: "Arabic Greetings",
+    title: "Арабские приветствия",
     type: "reading",
     isCompleted: false,
     isActive: true,
-    subject: "Arabic",
+    subject: "Арабский",
     content: {
       readingContent: [
-        "Arabic is the official language of 26 states and is spoken by more than 420 million people worldwide.",
-        "## Common Greetings",
-        "- **As-salaam 'alykum** (السلام عليكم): Peace be upon you - The most common greeting in Arabic.",
-        "- **Ahlan wa sahlan** (أهلاً و سهلاً): Welcome - A warm greeting used to welcome someone.",
-        "- **Sabah al-khair** (صباح الخير): Good morning - Used until noon.",
-        "- **Masa al-khair** (مساء الخير): Good evening - Used after noon.",
-        "## Responding to Greetings",
-        "- When someone says 'As-salaam 'alykum', you should respond with 'Wa 'alykum as-salaam' (وعليكم السلام) which means 'And upon you be peace'.",
-        "- For 'Sabah al-khair', respond with 'Sabah an-noor' (صباح النور) meaning 'Morning of light'.",
-        "Learning these basic greetings will help you make a good first impression when speaking with Arabic speakers."
+        "Арабский является официальным языком 26 государств и на нем говорят более 420 миллионов человек по всему миру.",
+        "## Распространенные приветствия",
+        "- **As-salaam 'alykum** (السلام عليكم): Мир вам - самое распространенное приветствие на арабском.",
+        "- **Ahlan wa sahlan** (أهلاً و سهلاً): Добро пожаловать - теплое приветствие, используемое для встречи кого-либо.",
+        "- **Sabah al-khair** (صباح الخير): Доброе утро - используется до полудня.",
+        "- **Masa al-khair** (مساء الخير): Добрый вечер - используется после полудня.",
+        "## Ответы на приветствия",
+        "- Когда кто-то говорит 'As-salaam 'alykum', вы должны ответить 'Wa 'alykum as-salaam' (وعليكم السلام), что означает 'И вам мир'.",
+        "- На 'Sabah al-khair' отвечают 'Sabah an-noor' (صباح النور), что означает 'Утро света'.",
+        "Изучение этих базовых приветствий поможет вам произвести хорошее первое впечатление при общении с арабоговорящими."
       ]
     }
   },
   "3": {
     id: 3,
-    title: "Basic Arabic Phrases Quiz",
+    title: "Тест по базовым арабским фразам",
     type: "quiz",
     isCompleted: false,
     isActive: true,
-    subject: "Arabic",
+    subject: "Арабский",
     content: {
       quizzes: [
         {
           id: 1,
-          question: "How do you say 'Thank you' in Arabic?",
+          question: "Как сказать 'Спасибо' на арабском?",
           options: ["Afwan - عفوا", "Shukran - شكرا", "Ma'a salama - مع السلامة", "Min fadlak - من فضلك"],
           correctAnswer: 1
         },
         {
           id: 2,
-          question: "Which phrase means 'My name is...' in Arabic?",
+          question: "Какая фраза означает 'Меня зовут...' на арабском?",
           options: ["Ana min... - أنا من", "Ismi... - اسمي", "Ana... - أنا", "Kayfa halak - كيف حالك"],
           correctAnswer: 1
         },
         {
           id: 3,
-          question: "What does 'Ma'a salama' mean?",
-          options: ["Good morning - صباح الخير", "Please - من فضلك", "Goodbye - مع السلامة", "You're welcome - على الرحب والسعة"],
+          question: "Что означает 'Ma'a salama'?",
+          options: ["Доброе утро - صباح الخير", "Пожалуйста - من فضلك", "До свидания - مع السلامة", "Пожалуйста (в ответ на благодарность) - على الرحب والسعة"],
           correctAnswer: 2
         }
       ]
@@ -90,11 +90,11 @@ const modules: Record<string, ModuleType> = {
   },
   "4": {
     id: 4,
-    title: "Arabic Script Practice",
+    title: "Практика арабского письма",
     type: "practice",
     isCompleted: false,
     isActive: true,
-    subject: "Arabic"
+    subject: "Арабский"
   }
 };
 
@@ -182,7 +182,7 @@ const Module = () => {
   
   const onPlayerReady = (event: any) => {
     // Player is ready
-    console.log("Player ready");
+    console.log("Плеер готов");
   };
   
   const onPlayerStateChange = (event: any) => {
@@ -217,11 +217,11 @@ const Module = () => {
   const renderModuleContent = () => {
     if (!currentModule) {
       return (
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h1 className="text-2xl font-bold mb-6">Module Not Found</h1>
-          <p>Sorry, we couldn't find the module you're looking for.</p>
+        <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+          <h1 className="text-2xl font-bold mb-6 dark:text-white">Модуль не найден</h1>
+          <p className="dark:text-gray-300">К сожалению, мы не смогли найти нужный модуль.</p>
           <button onClick={() => navigate('/')} className="duo-btn mt-4">
-            Go Back Home
+            Вернуться на главную
           </button>
         </div>
       );
@@ -230,9 +230,9 @@ const Module = () => {
     switch(currentModule.type) {
       case 'video':
         return (
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-4">{currentModule.title}</h1>
-            <div className="aspect-video bg-duolingo-gray rounded-lg overflow-hidden mb-4">
+          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+            <h1 className="text-2xl font-bold mb-4 dark:text-white">{currentModule.title}</h1>
+            <div className="aspect-video bg-duolingo-gray rounded-lg overflow-hidden mb-4 dark:bg-gray-700">
               <iframe 
                 id="youtube-player"
                 ref={videoRef}
@@ -243,14 +243,14 @@ const Module = () => {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="text-sm text-duolingo-dark/70 mb-4">Topic: Arabic Learning</div>
-            <p className="mb-6">{currentModule.content?.description}</p>
+            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Тема: Изучение арабского</div>
+            <p className="mb-6 dark:text-gray-300">{currentModule.content?.description}</p>
             <div className="flex justify-between">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Back to Lessons
+                Назад к урокам
               </button>
               <button onClick={() => navigate('/')} className="duo-btn">
-                Complete & Continue
+                Завершить и продолжить
               </button>
             </div>
             
@@ -268,13 +268,13 @@ const Module = () => {
         
       case 'reading':
         return (
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
+          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
             <div className="space-y-4 mb-8">
               {currentModule.content?.readingContent?.map((paragraph, index) => (
-                <div key={index} className="prose max-w-none">
+                <div key={index} className="prose max-w-none dark:text-gray-300">
                   {paragraph.startsWith('##') ? (
-                    <h2 className="text-xl font-bold mt-6 mb-3">{paragraph.replace('##', '').trim()}</h2>
+                    <h2 className="text-xl font-bold mt-6 mb-3 dark:text-white">{paragraph.replace('##', '').trim()}</h2>
                   ) : paragraph.startsWith('-') ? (
                     <div className="pl-4" dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                   ) : (
@@ -285,10 +285,10 @@ const Module = () => {
             </div>
             <div className="flex justify-between">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Back to Lessons
+                Назад к урокам
               </button>
               <button onClick={() => navigate('/')} className="duo-btn">
-                Complete & Continue
+                Завершить и продолжить
               </button>
             </div>
           </div>
@@ -296,15 +296,15 @@ const Module = () => {
         
       case 'quiz':
         return (
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
+          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
             <div className="space-y-6">
               {currentModule.content?.quizzes?.map((quiz) => (
-                <div key={quiz.id} className="bg-duolingo-light p-6 rounded-lg">
-                  <h3 className="font-bold text-lg mb-4">{quiz.question}</h3>
+                <div key={quiz.id} className="bg-duolingo-light p-6 rounded-lg dark:bg-gray-700">
+                  <h3 className="font-bold text-lg mb-4 dark:text-white">{quiz.question}</h3>
                   <div className="space-y-3">
                     {quiz.options.map((option, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-duolingo-light cursor-pointer">
+                      <div key={index} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-duolingo-light cursor-pointer dark:bg-gray-600 dark:border-gray-500 dark:hover:bg-gray-500 dark:text-white">
                         <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary">
                           <div className="h-2.5 w-2.5 rounded-full bg-primary" />
                         </div>
@@ -313,17 +313,17 @@ const Module = () => {
                     ))}
                   </div>
                   <div className="mt-4 text-right">
-                    <button className="duo-btn">Check Answer</button>
+                    <button className="duo-btn">Проверить ответ</button>
                   </div>
                 </div>
               ))}
             </div>
             <div className="flex justify-between mt-8">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Back to Lessons
+                Назад к урокам
               </button>
               <button onClick={() => navigate('/')} className="duo-btn">
-                Complete & Continue
+                Завершить и продолжить
               </button>
             </div>
           </div>
@@ -331,29 +331,29 @@ const Module = () => {
         
       case 'practice':
         return (
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">{currentModule.title}</h1>
-            <div className="bg-duolingo-light p-6 rounded-lg mb-8">
-              <h2 className="font-bold mb-4">Practice Exercise: Arabic Script</h2>
-              <p className="mb-6">Complete the following exercises to practice writing Arabic letters.</p>
+          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
+            <div className="bg-duolingo-light p-6 rounded-lg mb-8 dark:bg-gray-700">
+              <h2 className="font-bold mb-4 dark:text-white">Практическое упражнение: Арабское письмо</h2>
+              <p className="mb-6 dark:text-gray-300">Выполните следующие упражнения для практики написания арабских букв.</p>
               <div className="space-y-4">
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 1: Practice writing the letters ا (Alif), ب (Ba), ت (Ta).</p>
+                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                  <p className="font-medium">Упражнение 1: Практикуйтесь в написании букв ا (Алиф), ب (Ба), ت (Та).</p>
                 </div>
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 2: Connect the following letters to form words.</p>
+                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                  <p className="font-medium">Упражнение 2: Соедините следующие буквы для образования слов.</p>
                 </div>
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray">
-                  <p className="font-medium">Exercise 3: Read and pronounce the following short phrases.</p>
+                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
+                  <p className="font-medium">Упражнение 3: Прочитайте и произнесите следующие короткие фразы.</p>
                 </div>
               </div>
             </div>
             <div className="flex justify-between">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Back to Lessons
+                Назад к урокам
               </button>
               <button onClick={() => navigate('/')} className="duo-btn">
-                Complete & Continue
+                Завершить и продолжить
               </button>
             </div>
           </div>
@@ -361,11 +361,11 @@ const Module = () => {
         
       default:
         return (
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h1 className="text-2xl font-bold mb-6">Module Content</h1>
-            <p>This module type is not yet available.</p>
+          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">Содержание модуля</h1>
+            <p className="dark:text-gray-300">Данный тип модуля пока недоступен.</p>
             <button onClick={() => navigate(-1)} className="duo-btn mt-4">
-              Back to Lessons
+              Назад к урокам
             </button>
           </div>
         );
@@ -373,7 +373,7 @@ const Module = () => {
   };
   
   return (
-    <div className="min-h-screen bg-duolingo-light">
+    <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
       <NavBar />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">

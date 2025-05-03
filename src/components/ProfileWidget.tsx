@@ -13,9 +13,9 @@ const ProfileWidget: React.FC<ProfileWidgetProps> = ({
   gems 
 }) => {
   return (
-    <div className="bg-white shadow-md rounded-2xl p-6">
+    <div className="bg-white shadow-md rounded-2xl p-6 dark:bg-gray-800">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-bold">Your Stats</h3>
+        <h3 className="text-xl font-bold">Ваша статистика</h3>
       </div>
       
       <div className="grid grid-cols-3 gap-4">
@@ -27,7 +27,7 @@ const ProfileWidget: React.FC<ProfileWidgetProps> = ({
           </div>
           <div className="mt-2">
             <div className="font-bold text-lg">{streakDays}</div>
-            <div className="text-sm text-duolingo-dark/70">Day Streak</div>
+            <div className="text-sm text-duolingo-dark/70 dark:text-gray-400">Дней подряд</div>
           </div>
         </div>
         
@@ -39,7 +39,7 @@ const ProfileWidget: React.FC<ProfileWidgetProps> = ({
           </div>
           <div className="mt-2">
             <div className="font-bold text-lg">{xp}</div>
-            <div className="text-sm text-duolingo-dark/70">Total XP</div>
+            <div className="text-sm text-duolingo-dark/70 dark:text-gray-400">Всего опыта</div>
           </div>
         </div>
         
@@ -51,7 +51,7 @@ const ProfileWidget: React.FC<ProfileWidgetProps> = ({
           </div>
           <div className="mt-2">
             <div className="font-bold text-lg">{gems}</div>
-            <div className="text-sm text-duolingo-dark/70">Gems</div>
+            <div className="text-sm text-duolingo-dark/70 dark:text-gray-400">Кристаллы</div>
           </div>
         </div>
       </div>

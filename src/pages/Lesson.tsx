@@ -12,34 +12,34 @@ const Lesson = () => {
   const navigate = useNavigate();
   
   const isLanguage = !!language;
-  const courseName = language || subject || 'spanish';
+  const courseName = language || subject || 'испанский';
   
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
   
   // Traditional language lessons
   const languageLessons = [
-    { id: 1, title: "Basics", isCompleted: true, isActive: false },
-    { id: 2, title: "Phrases", isCompleted: true, isActive: false },
-    { id: 3, title: "Travel", isCompleted: false, isActive: true },
-    { id: 4, title: "Food", isCompleted: false, isActive: false },
-    { id: 5, title: "Family", isCompleted: false, isActive: false },
+    { id: 1, title: "Основы", isCompleted: true, isActive: false },
+    { id: 2, title: "Фразы", isCompleted: true, isActive: false },
+    { id: 3, title: "Поездки", isCompleted: false, isActive: true },
+    { id: 4, title: "Еда", isCompleted: false, isActive: false },
+    { id: 5, title: "Семья", isCompleted: false, isActive: false },
   ];
   
   // Subject modules with different types
   const subjectModules = [
-    { id: 1, title: "Introduction", type: "video", isCompleted: true, isActive: false },
-    { id: 2, title: "Concepts", type: "reading", isCompleted: true, isActive: false },
-    { id: 3, title: "Examples", type: "practice", isCompleted: false, isActive: true },
-    { id: 4, title: "Assessment", type: "quiz", isCompleted: false, isActive: false },
+    { id: 1, title: "Введение", type: "video", isCompleted: true, isActive: false },
+    { id: 2, title: "Понятия", type: "reading", isCompleted: true, isActive: false },
+    { id: 3, title: "Примеры", type: "practice", isCompleted: false, isActive: true },
+    { id: 4, title: "Оценка", type: "quiz", isCompleted: false, isActive: false },
   ];
   
   const currentQuestion = {
-    text: isLanguage ? "¿Cómo estás?" : "What is the derivative of x²?",
+    text: isLanguage ? "¿Cómo estás?" : "Чему равна производная x²?",
     options: isLanguage 
-      ? ["How are you?", "Where are you?", "Who are you?", "What is this?"]
-      : ["2x", "x²", "2", "None of these"],
-    correctAnswer: isLanguage ? "How are you?" : "2x"
+      ? ["Как дела?", "Где ты?", "Кто ты?", "Что это?"]
+      : ["2x", "x²", "2", "Ничего из перечисленного"],
+    correctAnswer: isLanguage ? "Как дела?" : "2x"
   };
   
   const handleAnswerClick = (answer: string) => {
@@ -62,10 +62,10 @@ const Lesson = () => {
   const getModuleContent = () => {
     if (isLanguage) {
       return (
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-8">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-8 dark:bg-gray-800">
           <div className="mb-8">
-            <h2 className="text-sm uppercase text-duolingo-dark/60 tracking-wider mb-1">Translate this sentence</h2>
-            <p className="text-2xl font-bold">{currentQuestion.text}</p>
+            <h2 className="text-sm uppercase text-duolingo-dark/60 tracking-wider mb-1 dark:text-gray-400">Переведите это предложение</h2>
+            <p className="text-2xl font-bold dark:text-white">{currentQuestion.text}</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -76,7 +76,7 @@ const Lesson = () => {
                 className={`p-4 rounded-xl border-2 font-medium text-left transition-all
                   ${selectedAnswer === option 
                     ? 'border-duolingo-green bg-duolingo-green/10' 
-                    : 'border-duolingo-gray hover:border-duolingo-green/50'}`}
+                    : 'border-duolingo-gray hover:border-duolingo-green/50'} dark:text-white`}
               >
                 {option}
               </button>
@@ -89,7 +89,7 @@ const Lesson = () => {
               disabled={!selectedAnswer}
               className={`duo-btn w-full ${!selectedAnswer ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              Check
+              Проверить
             </button>
           ) : (
             <div>
@@ -103,12 +103,12 @@ const Lesson = () => {
                 </div>
                 <div>
                   <p className="font-bold">
-                    {isCorrect ? 'Correct!' : 'Not quite right'}
+                    {isCorrect ? 'Правильно!' : 'Не совсем верно'}
                   </p>
                   <p className="text-sm">
                     {isCorrect 
-                      ? 'Great job!' 
-                      : `The correct answer is "${currentQuestion.correctAnswer}"`}
+                      ? 'Отличная работа!' 
+                      : `Правильный ответ: "${currentQuestion.correctAnswer}"`}
                   </p>
                 </div>
               </div>
@@ -117,7 +117,7 @@ const Lesson = () => {
                 onClick={handleContinue}
                 className="duo-btn w-full"
               >
-                Continue
+                Продолжить
               </button>
             </div>
           )}
@@ -126,10 +126,10 @@ const Lesson = () => {
     } else {
       // Subject content with current module type - showing quiz as an example
       return (
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-8">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-8 dark:bg-gray-800">
           <div className="mb-8">
-            <h2 className="text-sm uppercase text-duolingo-dark/60 tracking-wider mb-1">Quiz Question</h2>
-            <p className="text-2xl font-bold">{currentQuestion.text}</p>
+            <h2 className="text-sm uppercase text-duolingo-dark/60 tracking-wider mb-1 dark:text-gray-400">Тестовый вопрос</h2>
+            <p className="text-2xl font-bold dark:text-white">{currentQuestion.text}</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -140,7 +140,7 @@ const Lesson = () => {
                 className={`p-4 rounded-xl border-2 font-medium text-left transition-all
                   ${selectedAnswer === option 
                     ? 'border-duolingo-blue bg-duolingo-blue/10' 
-                    : 'border-duolingo-gray hover:border-duolingo-blue/50'}`}
+                    : 'border-duolingo-gray hover:border-duolingo-blue/50'} dark:text-white`}
               >
                 {option}
               </button>
@@ -153,7 +153,7 @@ const Lesson = () => {
               disabled={!selectedAnswer}
               className={`duo-btn w-full ${!selectedAnswer ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              Check Answer
+              Проверить ответ
             </button>
           ) : (
             <div>
@@ -167,12 +167,12 @@ const Lesson = () => {
                 </div>
                 <div>
                   <p className="font-bold">
-                    {isCorrect ? 'Correct!' : 'Not quite right'}
+                    {isCorrect ? 'Правильно!' : 'Не совсем верно'}
                   </p>
                   <p className="text-sm">
                     {isCorrect 
-                      ? 'Great job!' 
-                      : `The correct answer is "${currentQuestion.correctAnswer}"`}
+                      ? 'Отличная работа!' 
+                      : `Правильный ответ: "${currentQuestion.correctAnswer}"`}
                   </p>
                 </div>
               </div>
@@ -181,7 +181,7 @@ const Lesson = () => {
                 onClick={handleContinue}
                 className="duo-btn w-full"
               >
-                Continue
+                Продолжить
               </button>
             </div>
           )}
@@ -191,13 +191,13 @@ const Lesson = () => {
   };
 
   return (
-    <div className="min-h-screen bg-duolingo-light">
+    <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
       <NavBar />
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-duolingo-dark capitalize">
-            {courseName} {isLanguage ? 'Course' : 'Subject'}
+          <h1 className="text-3xl font-bold text-duolingo-dark capitalize dark:text-white">
+            {courseName} {isLanguage ? 'Курс' : 'Предмет'}
           </h1>
           
           <div className="mt-8 mb-12 flex justify-center">
