@@ -5,16 +5,27 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ReactNode } from "react";
 import Index from "./pages/Index";
 import Lesson from "./pages/Lesson";
 import Module from "./pages/Module";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
+// Create a client
 const queryClient = new QueryClient();
 
+// Create a wrapper component for QueryClientProvider
+const QueryProvider = ({ children }: { children: ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
+  );
+};
+
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <QueryProvider>
     <ThemeProvider defaultTheme="light">
       <TooltipProvider>
         <Toaster />
@@ -32,7 +43,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
-  </QueryClientProvider>
+  </QueryProvider>
 );
 
 export default App;
