@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Video, List } from 'lucide-react';
+import { Progress } from './ui/progress';
 
 interface CourseCardProps {
   id: number;
@@ -32,17 +33,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
     } else {
       switch (icon) {
         case 'math':
-          return <div className="text-4xl mb-3 text-duolingo-blue">π</div>;
+          return <div className="text-4xl mb-3 text-duolingo-blue dark:text-blue-400">π</div>;
         case 'science':
-          return <div className="text-4xl mb-3 text-duolingo-green">⚗️</div>;
+          return <div className="text-4xl mb-3 text-duolingo-green dark:text-green-400">⚗️</div>;
         case 'programming':
-          return <div className="text-4xl mb-3 text-duolingo-purple">&lt;/&gt;</div>;
+          return <div className="text-4xl mb-3 text-duolingo-purple dark:text-purple-400">&lt;/&gt;</div>;
         case 'history':
-          return <div className="text-4xl mb-3 text-duolingo-orange">📜</div>;
+          return <div className="text-4xl mb-3 text-duolingo-orange dark:text-orange-400">📜</div>;
         case 'art':
-          return <div className="text-4xl mb-3 text-duolingo-red">🎨</div>;
+          return <div className="text-4xl mb-3 text-duolingo-red dark:text-red-400">🎨</div>;
         default:
-          return <BookOpen size={40} className="mb-3 text-duolingo-dark" />;
+          return <BookOpen size={40} className="mb-3 text-duolingo-dark dark:text-gray-300" />;
       }
     }
   };
@@ -52,6 +53,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
       onClick={handleClick}
       className="duo-card cursor-pointer flex flex-col items-center"
     >
+      <div className="w-full flex justify-end mb-2">
+        <div className="w-16">
+          <Progress value={progress} className="h-2" />
+        </div>
+      </div>
+      
       {renderIcon()}
       <h3 className="text-xl font-bold mb-2">{name}</h3>
       
@@ -61,13 +68,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         </span>
       )}
       
-      <div className="w-full duo-progress mt-2">
-        <div 
-          className="duo-progress-bar" 
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-      <p className="text-sm text-duolingo-dark/70 mt-2">
+      <p className="text-sm text-duolingo-dark/70 dark:text-gray-400 mt-2">
         {progress}% complete
       </p>
     </div>

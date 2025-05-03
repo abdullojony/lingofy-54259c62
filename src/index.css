@@ -46,13 +46,52 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+  
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 101 98% 40%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 272 51% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
+  }
 
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-duolingo-light text-duolingo-dark font-sans;
+    @apply bg-duolingo-light text-duolingo-dark font-sans dark:bg-gray-900 dark:text-gray-200;
   }
 
   h1, h2, h3, h4 {
@@ -66,15 +105,15 @@
   }
   
   .duo-btn-outline {
-    @apply inline-block bg-white border-2 border-duolingo-green text-duolingo-green font-bold py-[10px] px-6 rounded-2xl shadow-sm hover:bg-duolingo-green/5 transition-colors;
+    @apply inline-block bg-white border-2 border-duolingo-green text-duolingo-green font-bold py-[10px] px-6 rounded-2xl shadow-sm hover:bg-duolingo-green/5 transition-colors dark:bg-transparent dark:hover:bg-duolingo-green/10 dark:text-duolingo-green;
   }
 
   .duo-card {
-    @apply bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6;
+    @apply bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 dark:bg-gray-800 dark:shadow-gray-900/30;
   }
 
   .duo-progress {
-    @apply h-4 rounded-full bg-duolingo-gray overflow-hidden;
+    @apply h-4 rounded-full bg-duolingo-gray overflow-hidden dark:bg-gray-700;
   }
 
   .duo-progress-bar {
