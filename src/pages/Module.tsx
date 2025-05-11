@@ -9,92 +9,99 @@ import { toast } from 'sonner';
 // Sample modules data
 const modules: Record<string, ModuleType> = {
   "1": {
-    id: 1,
-    title: "Введение в арабский",
-    type: "video",
-    isCompleted: false,
-    isActive: true,
-    subject: "Арабский",
-    content: {
-      videoUrl: "https://www.youtube.com/embed/sOQvSkC--mw?enablejsapi=1",
-      description: "Изучите основы арабского алфавита и произношения в этом комплексном введении.",
-      quizzes: [
+    "id": 1,
+    "title": "Introduction to English Grammar",
+    "type": "video",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "English",
+    "content": {
+      "videoUrl": "https://youtu.be/PIvrl8W_jh0?si=ElfTNfzhVObcNEe0",
+      "description": "Learn the basics of English grammar, including parts of speech and sentence structure, in this beginner-friendly introduction.",
+      "quizzes": [
         {
-          id: 1,
-          question: "Сколько букв в арабском алфавите?",
-          options: ["22 - ٢٢", "26 - ٢٦", "28 - ٢٨", "29 - ٢٩"],
-          correctAnswer: 2,
-          timestamp: 30
+          "id": 1,
+          "question": "What part of speech describes an action?",
+          "options": ["Noun", "Adjective", "Verb", "Adverb"],
+          "correctAnswer": 2,
+          "timestamp": 45
         },
         {
-          id: 2,
-          question: "В каком направлении пишется арабский текст?",
-          options: ["Слева направо - من اليسار إلى اليمين", "Справа налево - من اليمين إلى اليسار", "Сверху вниз - من الأعلى إلى الأسفل", "Снизу вверх - من الأسفل إلى الأعلى"],
-          correctAnswer: 1,
-          timestamp: 60
+          "id": 2,
+          "question": "Which sentence is grammatically correct?",
+          "options": [
+            "She go to school every day.",
+            "He going to the market.",
+            "They goes to the cinema.",
+            "I am learning English."
+          ],
+          "correctAnswer": 3,
+          "timestamp": 90
         }
       ]
     }
   },
   "2": {
-    id: 2,
-    title: "Арабские приветствия",
-    type: "reading",
-    isCompleted: false,
-    isActive: true,
-    subject: "Арабский",
-    content: {
-      readingContent: [
-        "Арабский является официальным языком 26 государств и на нем говорят более 420 миллионов человек по всему миру.",
-        "## Распространенные приветствия",
-        "- **As-salaam 'alykum** (السلام عليكم): Мир вам - самое распространенное приветствие на арабском.",
-        "- **Ahlan wa sahlan** (أهلاً و سهلاً): Добро пожаловать - теплое приветствие, используемое для встречи кого-либо.",
-        "- **Sabah al-khair** (صباح الخير): Доброе утро - используется до полудня.",
-        "- **Masa al-khair** (مساء الخير): Добрый вечер - используется после полудня.",
-        "## Ответы на приветствия",
-        "- Когда кто-то говорит 'As-salaam 'alykum', вы должны ответить 'Wa 'alykum as-salaam' (وعليكم السلام), что означает 'И вам мир'.",
-        "- На 'Sabah al-khair' отвечают 'Sabah an-noor' (صباح النور), что означает 'Утро света'.",
-        "Изучение этих базовых приветствий поможет вам произвести хорошее первое впечатление при общении с арабоговорящими."
+    "id": 2,
+    "title": "English Greetings",
+    "type": "reading",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "English",
+    "content": {
+      "readingContent": [
+        "English is spoken as a first or second language in over 100 countries and is used by more than 1.5 billion people worldwide.",
+        "## Common Greetings",
+        "- **Hello**: The most common and general greeting used any time of day.",
+        "- **Hi**: A casual and friendly version of 'Hello'.",
+        "- **Good morning**: Used in the morning, typically until 12 p.m.",
+        "- **Good evening**: Used after 5 p.m. or when it starts to get dark.",
+        "- **How are you?**: A polite way to ask someone how they are feeling.",
+        "## Responses to Greetings",
+        "- When someone says 'Hello' or 'Hi', you can respond with the same.",
+        "- To 'Good morning', reply with 'Good morning'.",
+        "- To 'How are you?', common responses are 'I'm good, thank you!' or 'I'm fine, how about you?'",
+        "Learning these basic greetings will help you start conversations and make a positive first impression in English-speaking environments."
       ]
     }
   },
   "3": {
-    id: 3,
-    title: "Тест по базовым арабским фразам",
-    type: "quiz",
-    isCompleted: false,
-    isActive: true,
-    subject: "Арабский",
-    content: {
-      quizzes: [
+    "id": 3,
+    "title": "Quiz on Basic English Phrases",
+    "type": "quiz",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "English",
+    "content": {
+      "quizzes": [
         {
-          id: 1,
-          question: "Как сказать 'Спасибо' на арабском?",
-          options: ["Afwan - عفوا", "Shukran - شكرا", "Ma'a salama - مع السلامة", "Min fadlak - من فضلك"],
-          correctAnswer: 1
+          "id": 1,
+          "question": "How do you say 'Thank you' in English?",
+          "options": ["You're welcome", "Please", "Thank you", "Goodbye"],
+          "correctAnswer": 2
         },
         {
-          id: 2,
-          question: "Какая фраза означает 'Меня зовут...' на арабском?",
-          options: ["Ana min... - أنا من", "Ismi... - اسمي", "Ana... - أنا", "Kayfa halak - كيف حالك"],
-          correctAnswer: 1
+          "id": 2,
+          "question": "Which phrase means 'My name is...'?",
+          "options": ["Where are you from?", "My name is...", "I am fine", "Nice to meet you"],
+          "correctAnswer": 1
         },
         {
-          id: 3,
-          question: "Что означает 'Ma'a salama'?",
-          options: ["Доброе утро - صباح الخير", "Пожалуйста - من فضلك", "До свидания - مع السلامة", "Пожалуйста (в ответ на благодарность) - على الرحب والسعة"],
-          correctAnswer: 2
+          "id": 3,
+          "question": "What does 'Goodbye' mean?",
+          "options": ["Hello", "Please", "Goodbye", "Thanks"],
+          "correctAnswer": 2
         }
       ]
     }
   },
   "4": {
     id: 4,
-    title: "Практика арабского письма",
+    title: "English writing practice",
     type: "practice",
     isCompleted: false,
     isActive: true,
-    subject: "Арабский"
+    subject: "English"
   }
 };
 
@@ -110,14 +117,14 @@ const Module = () => {
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentModule, setCurrentModule] = useState<ModuleType | null>(null);
-  
+
   // Get current module data
   useEffect(() => {
     if (id && modules[id]) {
       setCurrentModule(modules[id]);
     }
   }, [id]);
-  
+
   // Setup YouTube API and event listeners
   useEffect(() => {
     // Load YouTube iframe API
@@ -125,21 +132,21 @@ const Module = () => {
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    
+
     // Setup YouTube player when API is ready
     window.onYouTubeIframeAPIReady = () => {
       if (!videoRef.current) return;
-      
+
       const youtubePlayer = new window.YT.Player(videoRef.current, {
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
       });
-      
+
       setPlayer(youtubePlayer);
     };
-    
+
     return () => {
       // Clean up
       window.onYouTubeIframeAPIReady = null;
@@ -148,22 +155,22 @@ const Module = () => {
       }
     };
   }, []);
-  
+
   // Update current time and check for quizzes
   useEffect(() => {
     if (!player || !currentModule || currentModule.type !== 'video') return;
-    
+
     const timeUpdateInterval = setInterval(() => {
       try {
         const currentSeconds = player.getCurrentTime();
         setCurrentTime(currentSeconds);
-        
+
         // Check if we should show a quiz
         const quizToShow = currentModule.content?.quizzes?.find(quiz => {
           const timestamp = quiz.timestamp || 0;
           return currentSeconds >= timestamp && currentSeconds < timestamp + 1;
         });
-        
+
         if (quizToShow && !showQuiz && !activeQuiz) {
           setActiveQuiz(quizToShow);
           setShowQuiz(true);
@@ -174,26 +181,26 @@ const Module = () => {
         // Player might not be ready yet
       }
     }, 1000);
-    
+
     return () => {
       clearInterval(timeUpdateInterval);
     };
   }, [player, showQuiz, activeQuiz, currentModule]);
-  
+
   const onPlayerReady = (event: any) => {
     // Player is ready
     console.log("Плеер готов");
   };
-  
+
   const onPlayerStateChange = (event: any) => {
     // Update playing state
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
   };
-  
+
   const handleQuizComplete = (correct: boolean) => {
     setShowQuiz(false);
     setActiveQuiz(null);
-    
+
     // Resume video playback
     if (player) {
       setTimeout(() => {
@@ -202,18 +209,18 @@ const Module = () => {
       }, 500);
     }
   };
-  
+
   const handleQuizClose = () => {
     setShowQuiz(false);
     setActiveQuiz(null);
-    
+
     // Resume video playback
     if (player) {
       player.playVideo();
       setIsPlaying(true);
     }
   };
-  
+
   const renderModuleContent = () => {
     if (!currentModule) {
       return (
@@ -226,18 +233,18 @@ const Module = () => {
         </div>
       );
     }
-    
-    switch(currentModule.type) {
+
+    switch (currentModule.type) {
       case 'video':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
             <h1 className="text-2xl font-bold mb-4 dark:text-white">{currentModule.title}</h1>
             <div className="aspect-video bg-duolingo-gray rounded-lg overflow-hidden mb-4 dark:bg-gray-700">
-              <iframe 
+              <iframe
                 id="youtube-player"
                 ref={videoRef}
                 className="w-full h-full"
-                src={currentModule.content?.videoUrl} 
+                src={currentModule.content?.videoUrl}
                 title={currentModule.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -253,19 +260,19 @@ const Module = () => {
                 Завершить и продолжить
               </button>
             </div>
-            
+
             {/* Pop-up Quiz Dialog */}
             {activeQuiz && (
-              <VideoQuiz 
-                quiz={activeQuiz} 
-                open={showQuiz} 
+              <VideoQuiz
+                quiz={activeQuiz}
+                open={showQuiz}
                 onClose={handleQuizClose}
                 onComplete={handleQuizComplete}
               />
             )}
           </div>
         );
-        
+
       case 'reading':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
@@ -293,7 +300,7 @@ const Module = () => {
             </div>
           </div>
         );
-        
+
       case 'quiz':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
@@ -328,7 +335,7 @@ const Module = () => {
             </div>
           </div>
         );
-        
+
       case 'practice':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
@@ -358,7 +365,7 @@ const Module = () => {
             </div>
           </div>
         );
-        
+
       default:
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
@@ -371,7 +378,7 @@ const Module = () => {
         );
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
       <NavBar />
