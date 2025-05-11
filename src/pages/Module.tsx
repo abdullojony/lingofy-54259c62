@@ -250,7 +250,7 @@ const Module = () => {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Тема: Изучение арабского</div>
+            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Тема: English Grammar</div>
             <p className="mb-6 dark:text-gray-300">{currentModule.content?.description}</p>
             <div className="flex justify-between">
               <button onClick={() => navigate(-1)} className="duo-btn-outline">
