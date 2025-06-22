@@ -4,43 +4,60 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import ModuleCard from '../components/ModuleCard';
 import { Button } from '../components/ui/button';
+import { languageModules, subjectModules } from '../data/coursesData';
 
 const Lesson = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const subject = searchParams.get('language') || searchParams.get('subject') || 'english';
+  const language = searchParams.get('language');
+  const subject = searchParams.get('subject');
+  
+  // Determine which modules to show based on URL params
+  let modules: any[] = [];
+  let courseTitle = '';
+  
+  if (language) {
+    modules = languageModules[language.toLowerCase()] || [];
+    courseTitle = language;
+  } else if (subject) {
+    modules = subjectModules[subject.toLowerCase()] || [];
+    courseTitle = subject;
+  }
 
-  // Sample lesson modules
-  const modules = [
-    {
-      id: 1,
-      title: "Введение в грамматику",
-      type: "video" as const,
-      isCompleted: false,
-      isActive: true,
-    },
-    {
-      id: 2,
-      title: "Приветствия",
-      type: "reading" as const,
-      isCompleted: false,
-      isActive: true,
-    },
-    {
-      id: 3,
-      title: "Базовый тест",
-      type: "quiz" as const,
-      isCompleted: false,
-      isActive: true,
-    },
-    {
-      id: 4,
-      title: "Письменная практика",
-      type: "practice" as const,
-      isCompleted: false,
-      isActive: true,
-    },
-  ];
+  // Fallback to English modules if no specific course found
+  if (modules.length === 0) {
+    modules = [
+      {
+        id: 1,
+        title: "Введение в грамматику",
+        type: "video" as const,
+        isCompleted: false,
+        isActive: true,
+      },
+      {
+        id: 2,
+        title: "Приветствия",
+        type: "reading" as const,
+        isCompleted: false,
+        isActive: true,
+      },
+      {
+        id: 3,
+        title: "Базовый тест",
+        type: "quiz" as const,
+        isCompleted: false,
+        isActive: true,
+      },
+      {
+        id: 4,
+        title: "Письменная практика",
+        type: "practice" as const,
+        isCompleted: false,
+        isActive: true,
+      },
+    ];
+    courseTitle = 'Английский';
+  }
 
   return (
     <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
@@ -52,7 +69,7 @@ const Lesson = () => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-3xl font-bold text-duolingo-dark dark:text-white capitalize">
-                  Курс {subject}
+                  Курс {courseTitle}
                 </h1>
                 <p className="text-duolingo-dark/70 dark:text-gray-400 mt-2">
                   Завершите модули ниже, чтобы продвигаться в своем обучении
