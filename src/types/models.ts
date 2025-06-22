@@ -24,6 +24,7 @@ export interface Module {
     description?: string;
     quizzes?: Quiz[];
     readingContent?: string[];
+    practiceExercises?: string[];
   };
 }
 
