@@ -28,7 +28,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, onComplete }) => {
 
   const handleNext = () => {
     if (selectedAnswers[currentQuestion] === undefined) {
-      toast.error('Please select an answer');
+      toast.error('Пожалуйста, выберите ответ');
       return;
     }
 
@@ -58,13 +58,13 @@ const Quiz: React.FC<QuizProps> = ({ questions, onComplete }) => {
 
     return (
       <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-        <h2 className="text-2xl font-bold mb-4 dark:text-white">Quiz Results</h2>
+        <h2 className="text-2xl font-bold mb-4 dark:text-white">Результаты теста</h2>
         <div className="text-center mb-6">
           <div className="text-4xl font-bold text-duolingo-green dark:text-green-400 mb-2">
             {score}/{questions.length}
           </div>
           <p className="text-lg dark:text-gray-300">
-            You got {score} out of {questions.length} questions correct!
+            Вы правильно ответили на {score} из {questions.length} вопросов!
           </p>
         </div>
         <div className="space-y-4">
@@ -103,10 +103,10 @@ const Quiz: React.FC<QuizProps> = ({ questions, onComplete }) => {
       <div className="mb-4">
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold dark:text-white">
-            Question {currentQuestion + 1} of {questions.length}
+            Вопрос {currentQuestion + 1} из {questions.length}
           </h2>
           <div className="text-sm text-gray-500 dark:text-gray-400">
-            Progress: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
+            Прогресс: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
           </div>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
@@ -152,10 +152,10 @@ const Quiz: React.FC<QuizProps> = ({ questions, onComplete }) => {
           onClick={handlePrevious}
           disabled={currentQuestion === 0}
         >
-          Previous
+          Назад
         </Button>
         <Button onClick={handleNext}>
-          {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next'}
+          {currentQuestion === questions.length - 1 ? 'Завершить тест' : 'Далее'}
         </Button>
       </div>
     </div>

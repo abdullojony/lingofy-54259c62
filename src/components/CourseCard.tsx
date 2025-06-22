@@ -65,12 +65,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
       
       {isNew && (
         <span className="bg-duolingo-purple text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
-          NEW
+          НОВОЕ
         </span>
       )}
       
       <p className="text-sm text-duolingo-dark/70 dark:text-gray-400 mt-2">
-        {progress}% complete
+        {progress}% завершено
       </p>
     </div>
   );

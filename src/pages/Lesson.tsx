@@ -14,28 +14,28 @@ const Lesson = () => {
   const modules = [
     {
       id: 1,
-      title: "Grammar Intro",
+      title: "Введение в грамматику",
       type: "video" as const,
       isCompleted: false,
       isActive: true,
     },
     {
       id: 2,
-      title: "Greetings",
+      title: "Приветствия",
       type: "reading" as const,
       isCompleted: false,
       isActive: true,
     },
     {
       id: 3,
-      title: "Basic Quiz",
+      title: "Базовый тест",
       type: "quiz" as const,
       isCompleted: false,
       isActive: true,
     },
     {
       id: 4,
-      title: "Writing Practice",
+      title: "Письменная практика",
       type: "practice" as const,
       isCompleted: false,
       isActive: true,
@@ -52,14 +52,14 @@ const Lesson = () => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-3xl font-bold text-duolingo-dark dark:text-white capitalize">
-                  {subject} Course
+                  Курс {subject}
                 </h1>
                 <p className="text-duolingo-dark/70 dark:text-gray-400 mt-2">
-                  Complete the modules below to progress through your learning journey
+                  Завершите модули ниже, чтобы продвигаться в своем обучении
                 </p>
               </div>
               <Button variant="outline" onClick={() => navigate('/')}>
-                Back to Courses
+                Назад к курсам
               </Button>
             </div>
 
@@ -81,15 +81,15 @@ const Lesson = () => {
             </div>
 
             <div className="mt-8 p-4 bg-duolingo-light rounded-lg dark:bg-gray-700">
-              <h3 className="font-bold mb-2 dark:text-white">Course Progress</h3>
+              <h3 className="font-bold mb-2 dark:text-white">Прогресс курса</h3>
               <div className="flex items-center gap-4">
                 <div className="flex-1 bg-duolingo-gray rounded-full h-3 dark:bg-gray-600">
                   <div className="bg-duolingo-green h-3 rounded-full w-0 transition-all duration-300"></div>
                 </div>
-                <span className="text-sm font-medium dark:text-gray-300">0% Complete</span>
+                <span className="text-sm font-medium dark:text-gray-300">0% завершено</span>
               </div>
               <p className="text-sm text-duolingo-dark/70 dark:text-gray-400 mt-2">
-                Complete modules to unlock new content and track your progress
+                Завершайте модули, чтобы разблокировать новый контент и отслеживать прогресс
               </p>
             </div>
           </div>
