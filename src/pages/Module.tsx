@@ -3,8 +3,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import VideoQuiz from '../components/VideoQuiz';
-import { Module as ModuleType, Quiz } from '../types/models';
+import Quiz from '../components/Quiz';
+import { Module as ModuleType, Quiz as QuizType } from '../types/models';
 import { toast } from 'sonner';
+import { Button } from '../components/ui/button';
 
 // Sample modules data
 const modules: Record<string, ModuleType> = {
@@ -16,7 +18,7 @@ const modules: Record<string, ModuleType> = {
     "isActive": true,
     "subject": "English",
     "content": {
-      "videoUrl": "https://youtu.be/PIvrl8W_jh0?si=ElfTNfzhVObcNEe0",
+      "videoUrl": "https://www.youtube.com/embed/PIvrl8W_jh0",
       "description": "Learn the basics of English grammar, including parts of speech and sentence structure, in this beginner-friendly introduction.",
       "quizzes": [
         {
@@ -97,11 +99,18 @@ const modules: Record<string, ModuleType> = {
   },
   "4": {
     id: 4,
-    title: "English writing practice",
+    title: "English Writing Practice",
     type: "practice",
     isCompleted: false,
     isActive: true,
-    subject: "English"
+    subject: "English",
+    content: {
+      practiceExercises: [
+        "Write a short paragraph introducing yourself in English.",
+        "Create five sentences using different verb tenses.",
+        "Write a dialogue between two people meeting for the first time."
+      ]
+    }
   }
 };
 
@@ -112,11 +121,13 @@ const Module = () => {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLIFrameElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [activeQuiz, setActiveQuiz] = useState<Quiz | null>(null);
+  const [activeQuiz, setActiveQuiz] = useState<QuizType | null>(null);
   const [showQuiz, setShowQuiz] = useState(false);
   const [player, setPlayer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentModule, setCurrentModule] = useState<ModuleType | null>(null);
+  const [moduleCompleted, setModuleCompleted] = useState(false);
+  const [practiceAnswers, setPracticeAnswers] = useState<string[]>([]);
 
   // Get current module data
   useEffect(() => {
@@ -201,6 +212,12 @@ const Module = () => {
     setShowQuiz(false);
     setActiveQuiz(null);
 
+    if (correct) {
+      toast.success('Correct answer!');
+    } else {
+      toast.error('Incorrect answer. Keep learning!');
+    }
+
     // Resume video playback
     if (player) {
       setTimeout(() => {
@@ -221,15 +238,45 @@ const Module = () => {
     }
   };
 
+  const handleModuleComplete = () => {
+    setModuleCompleted(true);
+    toast.success('Module completed! Great job!');
+    
+    // Update module as completed (in a real app, this would be saved to backend)
+    if (currentModule) {
+      modules[currentModule.id.toString()].isCompleted = true;
+    }
+  };
+
+  const handleQuizModuleComplete = (score: number) => {
+    const percentage = (score / (currentModule?.content?.quizzes?.length || 1)) * 100;
+    
+    if (percentage >= 70) {
+      toast.success(`Quiz completed! You scored ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%)`);
+      handleModuleComplete();
+    } else {
+      toast.error(`You scored ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%). Try again to pass!`);
+    }
+  };
+
+  const handlePracticeSubmit = () => {
+    if (practiceAnswers.some(answer => answer.trim().length > 0)) {
+      toast.success('Practice exercises submitted successfully!');
+      handleModuleComplete();
+    } else {
+      toast.error('Please complete at least one exercise before submitting.');
+    }
+  };
+
   const renderModuleContent = () => {
     if (!currentModule) {
       return (
         <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-          <h1 className="text-2xl font-bold mb-6 dark:text-white">Модуль не найден</h1>
-          <p className="dark:text-gray-300">К сожалению, мы не смогли найти нужный модуль.</p>
-          <button onClick={() => navigate('/')} className="duo-btn mt-4">
-            Вернуться на главную
-          </button>
+          <h1 className="text-2xl font-bold mb-6 dark:text-white">Module not found</h1>
+          <p className="dark:text-gray-300">Sorry, we couldn't find the requested module.</p>
+          <Button onClick={() => navigate('/lesson')} className="mt-4">
+            Back to Lessons
+          </Button>
         </div>
       );
     }
@@ -250,15 +297,15 @@ const Module = () => {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Тема: English Grammar</div>
+            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Subject: {currentModule.subject}</div>
             <p className="mb-6 dark:text-gray-300">{currentModule.content?.description}</p>
             <div className="flex justify-between">
-              <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Назад к урокам
-              </button>
-              <button onClick={() => navigate('/')} className="duo-btn">
-                Завершить и продолжить
-              </button>
+              <Button variant="outline" onClick={() => navigate('/lesson')}>
+                Back to Lessons
+              </Button>
+              <Button onClick={handleModuleComplete} disabled={moduleCompleted}>
+                {moduleCompleted ? 'Completed!' : 'Mark as Complete'}
+              </Button>
             </div>
 
             {/* Pop-up Quiz Dialog */}
@@ -291,77 +338,67 @@ const Module = () => {
               ))}
             </div>
             <div className="flex justify-between">
-              <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Назад к урокам
-              </button>
-              <button onClick={() => navigate('/')} className="duo-btn">
-                Завершить и продолжить
-              </button>
+              <Button variant="outline" onClick={() => navigate('/lesson')}>
+                Back to Lessons
+              </Button>
+              <Button onClick={handleModuleComplete} disabled={moduleCompleted}>
+                {moduleCompleted ? 'Completed!' : 'Mark as Complete'}
+              </Button>
             </div>
           </div>
         );
 
       case 'quiz':
-        return (
-          <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-            <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
-            <div className="space-y-6">
-              {currentModule.content?.quizzes?.map((quiz) => (
-                <div key={quiz.id} className="bg-duolingo-light p-6 rounded-lg dark:bg-gray-700">
-                  <h3 className="font-bold text-lg mb-4 dark:text-white">{quiz.question}</h3>
-                  <div className="space-y-3">
-                    {quiz.options.map((option, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-duolingo-light cursor-pointer dark:bg-gray-600 dark:border-gray-500 dark:hover:bg-gray-500 dark:text-white">
-                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary">
-                          <div className="h-2.5 w-2.5 rounded-full bg-primary" />
-                        </div>
-                        <div className="font-normal">{option}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 text-right">
-                    <button className="duo-btn">Проверить ответ</button>
-                  </div>
-                </div>
-              ))}
+        if (currentModule.content?.quizzes) {
+          return (
+            <div className="max-w-3xl mx-auto">
+              <Quiz
+                questions={currentModule.content.quizzes}
+                onComplete={handleQuizModuleComplete}
+              />
+              <div className="mt-6 flex justify-center">
+                <Button variant="outline" onClick={() => navigate('/lesson')}>
+                  Back to Lessons
+                </Button>
+              </div>
             </div>
-            <div className="flex justify-between mt-8">
-              <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Назад к урокам
-              </button>
-              <button onClick={() => navigate('/')} className="duo-btn">
-                Завершить и продолжить
-              </button>
-            </div>
-          </div>
-        );
+          );
+        }
+        return null;
 
       case 'practice':
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
             <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
             <div className="bg-duolingo-light p-6 rounded-lg mb-8 dark:bg-gray-700">
-              <h2 className="font-bold mb-4 dark:text-white">Практическое упражнение: Арабское письмо</h2>
-              <p className="mb-6 dark:text-gray-300">Выполните следующие упражнения для практики написания арабских букв.</p>
-              <div className="space-y-4">
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                  <p className="font-medium">Упражнение 1: Практикуйтесь в написании букв ا (Алиф), ب (Ба), ت (Та).</p>
-                </div>
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                  <p className="font-medium">Упражнение 2: Соедините следующие буквы для образования слов.</p>
-                </div>
-                <div className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500 dark:text-white">
-                  <p className="font-medium">Упражнение 3: Прочитайте и произнесите следующие короткие фразы.</p>
-                </div>
+              <h2 className="font-bold mb-4 dark:text-white">Practice Exercises: English Writing</h2>
+              <p className="mb-6 dark:text-gray-300">Complete the following exercises to practice your English writing skills.</p>
+              <div className="space-y-6">
+                {currentModule.content?.practiceExercises?.map((exercise, index) => (
+                  <div key={index} className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500">
+                    <p className="font-medium mb-3 dark:text-white">Exercise {index + 1}: {exercise}</p>
+                    <textarea
+                      className="w-full p-3 border rounded-md resize-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      rows={4}
+                      placeholder="Write your answer here..."
+                      value={practiceAnswers[index] || ''}
+                      onChange={(e) => {
+                        const newAnswers = [...practiceAnswers];
+                        newAnswers[index] = e.target.value;
+                        setPracticeAnswers(newAnswers);
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex justify-between">
-              <button onClick={() => navigate(-1)} className="duo-btn-outline">
-                Назад к урокам
-              </button>
-              <button onClick={() => navigate('/')} className="duo-btn">
-                Завершить и продолжить
-              </button>
+              <Button variant="outline" onClick={() => navigate('/lesson')}>
+                Back to Lessons
+              </Button>
+              <Button onClick={handlePracticeSubmit} disabled={moduleCompleted}>
+                {moduleCompleted ? 'Completed!' : 'Submit Exercises'}
+              </Button>
             </div>
           </div>
         );
@@ -369,11 +406,11 @@ const Module = () => {
       default:
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-            <h1 className="text-2xl font-bold mb-6 dark:text-white">Содержание модуля</h1>
-            <p className="dark:text-gray-300">Данный тип модуля пока недоступен.</p>
-            <button onClick={() => navigate(-1)} className="duo-btn mt-4">
-              Назад к урокам
-            </button>
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">Module Content</h1>
+            <p className="dark:text-gray-300">This module type is not yet available.</p>
+            <Button onClick={() => navigate('/lesson')} className="mt-4">
+              Back to Lessons
+            </Button>
           </div>
         );
     }

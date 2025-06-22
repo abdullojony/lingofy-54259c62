@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Video, List } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { Progress } from './ui/progress';
 
 interface CourseCardProps {
@@ -24,7 +24,8 @@ const CourseCard: React.FC<CourseCardProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/lesson?${type}=${name.toLowerCase()}`);
+    const courseParam = type === 'language' ? 'language' : 'subject';
+    navigate(`/lesson?${courseParam}=${name.toLowerCase()}`);
   };
 
   const renderIcon = () => {
@@ -51,7 +52,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   return (
     <div 
       onClick={handleClick}
-      className="duo-card cursor-pointer flex flex-col items-center"
+      className="duo-card cursor-pointer flex flex-col items-center hover:shadow-lg transition-shadow"
     >
       <div className="w-full flex justify-end mb-2">
         <div className="w-16">
@@ -60,16 +61,16 @@ const CourseCard: React.FC<CourseCardProps> = ({
       </div>
       
       {renderIcon()}
-      <h3 className="text-xl font-bold mb-2">{name}</h3>
+      <h3 className="text-xl font-bold mb-2 dark:text-white">{name}</h3>
       
       {isNew && (
         <span className="bg-duolingo-purple text-white text-xs font-bold px-2 py-1 rounded-full mb-2">
-          НОВИНКА
+          NEW
         </span>
       )}
       
       <p className="text-sm text-duolingo-dark/70 dark:text-gray-400 mt-2">
-        {progress}% завершено
+        {progress}% complete
       </p>
     </div>
   );
