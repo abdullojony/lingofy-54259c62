@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
@@ -12,25 +11,25 @@ import { Button } from '../components/ui/button';
 const modules: Record<string, ModuleType> = {
   "1": {
     "id": 1,
-    "title": "Introduction to English Grammar",
+    "title": "Введение в английскую грамматику",
     "type": "video",
     "isCompleted": false,
     "isActive": true,
-    "subject": "English",
+    "subject": "Английский",
     "content": {
       "videoUrl": "https://www.youtube.com/embed/PIvrl8W_jh0",
-      "description": "Learn the basics of English grammar, including parts of speech and sentence structure, in this beginner-friendly introduction.",
+      "description": "Изучите основы английской грамматики, включая части речи и структуру предложений, в этом введении для начинающих.",
       "quizzes": [
         {
           "id": 1,
-          "question": "What part of speech describes an action?",
+          "question": "Какая часть речи описывает действие?",
           "options": ["Noun", "Adjective", "Verb", "Adverb"],
           "correctAnswer": 2,
           "timestamp": 45
         },
         {
           "id": 2,
-          "question": "Which sentence is grammatically correct?",
+          "question": "Какое предложение грамматически правильное?",
           "options": [
             "She go to school every day.",
             "He going to the market.",
@@ -45,52 +44,52 @@ const modules: Record<string, ModuleType> = {
   },
   "2": {
     "id": 2,
-    "title": "English Greetings",
+    "title": "Английские приветствия",
     "type": "reading",
     "isCompleted": false,
     "isActive": true,
-    "subject": "English",
+    "subject": "Английский",
     "content": {
       "readingContent": [
-        "English is spoken as a first or second language in over 100 countries and is used by more than 1.5 billion people worldwide.",
-        "## Common Greetings",
-        "- **Hello**: The most common and general greeting used any time of day.",
-        "- **Hi**: A casual and friendly version of 'Hello'.",
-        "- **Good morning**: Used in the morning, typically until 12 p.m.",
-        "- **Good evening**: Used after 5 p.m. or when it starts to get dark.",
-        "- **How are you?**: A polite way to ask someone how they are feeling.",
-        "## Responses to Greetings",
-        "- When someone says 'Hello' or 'Hi', you can respond with the same.",
-        "- To 'Good morning', reply with 'Good morning'.",
-        "- To 'How are you?', common responses are 'I'm good, thank you!' or 'I'm fine, how about you?'",
-        "Learning these basic greetings will help you start conversations and make a positive first impression in English-speaking environments."
+        "Английский язык используется как первый или второй язык в более чем 100 странах и используется более чем 1,5 миллиардами людей по всему миру.",
+        "## Обычные приветствия",
+        "- **Hello**: Самое распространенное и общее приветствие, используемое в любое время дня.",
+        "- **Hi**: Непринужденная и дружелюбная версия 'Hello'.",
+        "- **Good morning**: Используется утром, обычно до 12 часов дня.",
+        "- **Good evening**: Используется после 17:00 или когда начинает темнеть.",
+        "- **How are you?**: Вежливый способ спросить кого-то, как они себя чувствуют.",
+        "## Ответы на приветствия",
+        "- Когда кто-то говорит 'Hello' или 'Hi', вы можете ответить тем же.",
+        "- На 'Good morning' отвечайте 'Good morning'.",
+        "- На 'How are you?' обычные ответы: 'I'm good, thank you!' или 'I'm fine, how about you?'",
+        "Изучение этих основных приветствий поможет вам начинать разговоры и производить положительное первое впечатление в англоязычной среде."
       ]
     }
   },
   "3": {
     "id": 3,
-    "title": "Quiz on Basic English Phrases",
+    "title": "Тест по основным английским фразам",
     "type": "quiz",
     "isCompleted": false,
     "isActive": true,
-    "subject": "English",
+    "subject": "Английский",
     "content": {
       "quizzes": [
         {
           "id": 1,
-          "question": "How do you say 'Thank you' in English?",
+          "question": "Как сказать 'Спасибо' по-английски?",
           "options": ["You're welcome", "Please", "Thank you", "Goodbye"],
           "correctAnswer": 2
         },
         {
           "id": 2,
-          "question": "Which phrase means 'My name is...'?",
+          "question": "Какая фраза означает 'Меня зовут...'?",
           "options": ["Where are you from?", "My name is...", "I am fine", "Nice to meet you"],
           "correctAnswer": 1
         },
         {
           "id": 3,
-          "question": "What does 'Goodbye' mean?",
+          "question": "Что означает 'До свидания' по-английски?",
           "options": ["Hello", "Please", "Goodbye", "Thanks"],
           "correctAnswer": 2
         }
@@ -99,16 +98,16 @@ const modules: Record<string, ModuleType> = {
   },
   "4": {
     id: 4,
-    title: "English Writing Practice",
+    title: "Практика письма на английском",
     type: "practice",
     isCompleted: false,
     isActive: true,
-    subject: "English",
+    subject: "Английский",
     content: {
       practiceExercises: [
-        "Write a short paragraph introducing yourself in English.",
-        "Create five sentences using different verb tenses.",
-        "Write a dialogue between two people meeting for the first time."
+        "Напишите короткий абзац, представляя себя на английском языке.",
+        "Создайте пять предложений, используя разные времена глаголов.",
+        "Напишите диалог между двумя людьми, встречающимися впервые."
       ]
     }
   }
@@ -213,9 +212,9 @@ const Module = () => {
     setActiveQuiz(null);
 
     if (correct) {
-      toast.success('Correct answer!');
+      toast.success('Правильный ответ!');
     } else {
-      toast.error('Incorrect answer. Keep learning!');
+      toast.error('Неправильный ответ. Продолжайте учиться!');
     }
 
     // Resume video playback
@@ -231,7 +230,7 @@ const Module = () => {
     setShowQuiz(false);
     setActiveQuiz(null);
 
-    // Resume video playback
+    // Resume video playbook
     if (player) {
       player.playVideo();
       setIsPlaying(true);
@@ -240,7 +239,7 @@ const Module = () => {
 
   const handleModuleComplete = () => {
     setModuleCompleted(true);
-    toast.success('Module completed! Great job!');
+    toast.success('Модуль завершен! Отличная работа!');
     
     // Update module as completed (in a real app, this would be saved to backend)
     if (currentModule) {
@@ -252,19 +251,19 @@ const Module = () => {
     const percentage = (score / (currentModule?.content?.quizzes?.length || 1)) * 100;
     
     if (percentage >= 70) {
-      toast.success(`Quiz completed! You scored ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%)`);
+      toast.success(`Тест завершен! Ваш результат ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%)`);
       handleModuleComplete();
     } else {
-      toast.error(`You scored ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%). Try again to pass!`);
+      toast.error(`Ваш результат ${score}/${currentModule?.content?.quizzes?.length} (${Math.round(percentage)}%). Попробуйте еще раз, чтобы пройти!`);
     }
   };
 
   const handlePracticeSubmit = () => {
     if (practiceAnswers.some(answer => answer.trim().length > 0)) {
-      toast.success('Practice exercises submitted successfully!');
+      toast.success('Практические упражнения успешно отправлены!');
       handleModuleComplete();
     } else {
-      toast.error('Please complete at least one exercise before submitting.');
+      toast.error('Пожалуйста, выполните хотя бы одно упражнение перед отправкой.');
     }
   };
 
@@ -272,10 +271,10 @@ const Module = () => {
     if (!currentModule) {
       return (
         <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-          <h1 className="text-2xl font-bold mb-6 dark:text-white">Module not found</h1>
-          <p className="dark:text-gray-300">Sorry, we couldn't find the requested module.</p>
+          <h1 className="text-2xl font-bold mb-6 dark:text-white">Модуль не найден</h1>
+          <p className="dark:text-gray-300">Извините, мы не смогли найти запрашиваемый модуль.</p>
           <Button onClick={() => navigate('/lesson')} className="mt-4">
-            Back to Lessons
+            Назад к урокам
           </Button>
         </div>
       );
@@ -297,14 +296,14 @@ const Module = () => {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Subject: {currentModule.subject}</div>
+            <div className="text-sm text-duolingo-dark/70 mb-4 dark:text-gray-400">Предмет: {currentModule.subject}</div>
             <p className="mb-6 dark:text-gray-300">{currentModule.content?.description}</p>
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => navigate('/lesson')}>
-                Back to Lessons
+                Назад к урокам
               </Button>
               <Button onClick={handleModuleComplete} disabled={moduleCompleted}>
-                {moduleCompleted ? 'Completed!' : 'Mark as Complete'}
+                {moduleCompleted ? 'Завершено!' : 'Отметить как завершенное'}
               </Button>
             </div>
 
@@ -339,10 +338,10 @@ const Module = () => {
             </div>
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => navigate('/lesson')}>
-                Back to Lessons
+                Назад к урокам
               </Button>
               <Button onClick={handleModuleComplete} disabled={moduleCompleted}>
-                {moduleCompleted ? 'Completed!' : 'Mark as Complete'}
+                {moduleCompleted ? 'Завершено!' : 'Отметить как завершенное'}
               </Button>
             </div>
           </div>
@@ -358,7 +357,7 @@ const Module = () => {
               />
               <div className="mt-6 flex justify-center">
                 <Button variant="outline" onClick={() => navigate('/lesson')}>
-                  Back to Lessons
+                  Назад к урокам
                 </Button>
               </div>
             </div>
@@ -371,16 +370,16 @@ const Module = () => {
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
             <h1 className="text-2xl font-bold mb-6 dark:text-white">{currentModule.title}</h1>
             <div className="bg-duolingo-light p-6 rounded-lg mb-8 dark:bg-gray-700">
-              <h2 className="font-bold mb-4 dark:text-white">Practice Exercises: English Writing</h2>
-              <p className="mb-6 dark:text-gray-300">Complete the following exercises to practice your English writing skills.</p>
+              <h2 className="font-bold mb-4 dark:text-white">Практические упражнения: Письмо на английском</h2>
+              <p className="mb-6 dark:text-gray-300">Выполните следующие упражнения, чтобы попрактиковаться в письме на английском языке.</p>
               <div className="space-y-6">
                 {currentModule.content?.practiceExercises?.map((exercise, index) => (
                   <div key={index} className="p-4 bg-white rounded-lg border border-duolingo-gray dark:bg-gray-600 dark:border-gray-500">
-                    <p className="font-medium mb-3 dark:text-white">Exercise {index + 1}: {exercise}</p>
+                    <p className="font-medium mb-3 dark:text-white">Упражнение {index + 1}: {exercise}</p>
                     <textarea
                       className="w-full p-3 border rounded-md resize-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       rows={4}
-                      placeholder="Write your answer here..."
+                      placeholder="Напишите свой ответ здесь..."
                       value={practiceAnswers[index] || ''}
                       onChange={(e) => {
                         const newAnswers = [...practiceAnswers];
@@ -394,10 +393,10 @@ const Module = () => {
             </div>
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => navigate('/lesson')}>
-                Back to Lessons
+                Назад к урокам
               </Button>
               <Button onClick={handlePracticeSubmit} disabled={moduleCompleted}>
-                {moduleCompleted ? 'Completed!' : 'Submit Exercises'}
+                {moduleCompleted ? 'Завершено!' : 'Отправить упражнения'}
               </Button>
             </div>
           </div>
@@ -406,10 +405,10 @@ const Module = () => {
       default:
         return (
           <div className="bg-white rounded-2xl shadow-md p-6 dark:bg-gray-800">
-            <h1 className="text-2xl font-bold mb-6 dark:text-white">Module Content</h1>
-            <p className="dark:text-gray-300">This module type is not yet available.</p>
+            <h1 className="text-2xl font-bold mb-6 dark:text-white">Содержимое модуля</h1>
+            <p className="dark:text-gray-300">Этот тип модуля пока недоступен.</p>
             <Button onClick={() => navigate('/lesson')} className="mt-4">
-              Back to Lessons
+              Назад к урокам
             </Button>
           </div>
         );
