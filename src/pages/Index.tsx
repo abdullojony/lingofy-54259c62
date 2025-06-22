@@ -35,7 +35,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-duolingo-dark mb-4 dark:text-gray-100">
-            Изучайте всё с Lingvai
+            Изучайте всё с Линговай
           </h1>
           <p className="text-lg text-duolingo-dark/70 max-w-2xl mx-auto dark:text-gray-400">
             Изучайте языки, академические предметы и профессиональные навыки с нашими интерактивными уроками!
