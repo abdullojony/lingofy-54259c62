@@ -6,129 +6,111 @@ import Quiz from '../components/Quiz';
 import { Module as ModuleType, Quiz as QuizType } from '../types/models';
 import { toast } from 'sonner';
 import { Button } from '../components/ui/button';
-import { languageModules, subjectModules } from '../data/coursesData';
 
-// Combine all modules from different subjects
-const getAllModules = (): Record<string, ModuleType> => {
-  const allModules: Record<string, ModuleType> = {};
-  
-  // Add language modules
-  Object.values(languageModules).flat().forEach(module => {
-    allModules[module.id.toString()] = module;
-  });
-  
-  // Add subject modules
-  Object.values(subjectModules).flat().forEach(module => {
-    allModules[module.id.toString()] = module;
-  });
-  
-  // Add existing English modules for backward compatibility
-  const existingModules = {
-    "1": {
-      "id": 1,
-      "title": "Введение в английскую грамматику",
-      "type": "video" as const,
-      "isCompleted": false,
-      "isActive": true,
-      "subject": "Английский",
-      "content": {
-        "videoUrl": "https://www.youtube.com/embed/PIvrl8W_jh0",
-        "description": "Изучите основы английской грамматики, включая части речи и структуру предложений, в этом введении для начинающих.",
-        "quizzes": [
-          {
-            "id": 1,
-            "question": "Какая часть речи описывает действие?",
-            "options": ["Noun", "Adjective", "Verb", "Adverb"],
-            "correctAnswer": 2,
-            "timestamp": 45
-          },
-          {
-            "id": 2,
-            "question": "Какое предложение грамматически правильное?",
-            "options": [
-              "She go to school every day.",
-              "He going to the market.",
-              "They goes to the cinema.",
-              "I am learning English."
-            ],
-            "correctAnswer": 3,
-            "timestamp": 90
-          }
-        ]
-      }
-    },
-    "2": {
-      "id": 2,
-      "title": "Английские приветствия",
-      "type": "reading" as const,
-      "isCompleted": false,
-      "isActive": true,
-      "subject": "Английский",
-      "content": {
-        "readingContent": [
-          "Английский язык используется как первый или второй язык в более чем 100 странах и используется более чем 1,5 миллиардами людей по всему миру.",
-          "## Обычные приветствия",
-          "- **Hello**: Самое распространенное и общее приветствие, используемое в любое время дня.",
-          "- **Hi**: Непринужденная и дружелюбная версия 'Hello'.",
-          "- **Good morning**: Используется утром, обычно до 12 часов дня.",
-          "- **Good evening**: Используется после 17:00 или когда начинает темнеть.",
-          "- **How are you?**: Вежливый способ спросить кого-то, как они себя чувствуют.",
-          "## Ответы на приветствия",
-          "- Когда кто-то говорит 'Hello' или 'Hi', вы можете ответить тем же.",
-          "- На 'Good morning' отвечайте 'Good morning'.",
-          "- На 'How are you?' обычные ответы: 'I'm good, thank you!' или 'I'm fine, how about you?'",
-          "Изучение этих основных приветствий поможет вам начинать разговоры и производить положительное первое впечатление в англоязычной среде."
-        ]
-      }
-    },
-    "3": {
-      "id": 3,
-      "title": "Тест по основным английским фразам",
-      "type": "quiz" as const,
-      "isCompleted": false,
-      "isActive": true,
-      "subject": "Английский",
-      "content": {
-        "quizzes": [
-          {
-            "id": 1,
-            "question": "Как сказать 'Спасибо' по-английски?",
-            "options": ["You're welcome", "Please", "Thank you", "Goodbye"],
-            "correctAnswer": 2
-          },
-          {
-            "id": 2,
-            "question": "Какая фраза означает 'Меня зовут...'?",
-            "options": ["Where are you from?", "My name is...", "I am fine", "Nice to meet you"],
-            "correctAnswer": 1
-          },
-          {
-            "id": 3,
-            "question": "Что означает 'До свидания' по-английски?",
-            "options": ["Hello", "Please", "Goodbye", "Thanks"],
-            "correctAnswer": 2
-          }
-        ]
-      }
-    },
-    "4": {
-      id: 4,
-      title: "Практика письма на английском",
-      type: "practice" as const,
-      isCompleted: false,
-      isActive: true,
-      subject: "Английский",
-      content: {
-        practiceExercises: [
-          "Напишите короткий абзац, представляя себя на английском языке.",
-          "Создайте пять предложений, используя разные времена глаголов.",
-          "Напишите диалог между двумя людьми, встречающимися впервые."
-        ]
-      }
+// Sample modules data
+const modules: Record<string, ModuleType> = {
+  "1": {
+    "id": 1,
+    "title": "Введение в английскую грамматику",
+    "type": "video",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "Английский",
+    "content": {
+      "videoUrl": "https://www.youtube.com/embed/PIvrl8W_jh0",
+      "description": "Изучите основы английской грамматики, включая части речи и структуру предложений, в этом введении для начинающих.",
+      "quizzes": [
+        {
+          "id": 1,
+          "question": "Какая часть речи описывает действие?",
+          "options": ["Noun", "Adjective", "Verb", "Adverb"],
+          "correctAnswer": 2,
+          "timestamp": 45
+        },
+        {
+          "id": 2,
+          "question": "Какое предложение грамматически правильное?",
+          "options": [
+            "She go to school every day.",
+            "He going to the market.",
+            "They goes to the cinema.",
+            "I am learning English."
+          ],
+          "correctAnswer": 3,
+          "timestamp": 90
+        }
+      ]
     }
-  };
-  
-  return { ...allModules, ...existingModules };
+  },
+  "2": {
+    "id": 2,
+    "title": "Английские приветствия",
+    "type": "reading",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "Английский",
+    "content": {
+      "readingContent": [
+        "Английский язык используется как первый или второй язык в более чем 100 странах и используется более чем 1,5 миллиардами людей по всему миру.",
+        "## Обычные приветствия",
+        "- **Hello**: Самое распространенное и общее приветствие, используемое в любое время дня.",
+        "- **Hi**: Непринужденная и дружелюбная версия 'Hello'.",
+        "- **Good morning**: Используется утром, обычно до 12 часов дня.",
+        "- **Good evening**: Используется после 17:00 или когда начинает темнеть.",
+        "- **How are you?**: Вежливый способ спросить кого-то, как они себя чувствуют.",
+        "## Ответы на приветствия",
+        "- Когда кто-то говорит 'Hello' или 'Hi', вы можете ответить тем же.",
+        "- На 'Good morning' отвечайте 'Good morning'.",
+        "- На 'How are you?' обычные ответы: 'I'm good, thank you!' или 'I'm fine, how about you?'",
+        "Изучение этих основных приветствий поможет вам начинать разговоры и производить положительное первое впечатление в англоязычной среде."
+      ]
+    }
+  },
+  "3": {
+    "id": 3,
+    "title": "Тест по основным английским фразам",
+    "type": "quiz",
+    "isCompleted": false,
+    "isActive": true,
+    "subject": "Английский",
+    "content": {
+      "quizzes": [
+        {
+          "id": 1,
+          "question": "Как сказать 'Спасибо' по-английски?",
+          "options": ["You're welcome", "Please", "Thank you", "Goodbye"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 2,
+          "question": "Какая фраза означает 'Меня зовут...'?",
+          "options": ["Where are you from?", "My name is...", "I am fine", "Nice to meet you"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 3,
+          "question": "Что означает 'До свидания' по-английски?",
+          "options": ["Hello", "Please", "Goodbye", "Thanks"],
+          "correctAnswer": 2
+        }
+      ]
+    }
+  },
+  "4": {
+    id: 4,
+    title: "Практика письма на английском",
+    type: "practice",
+    isCompleted: false,
+    isActive: true,
+    subject: "Английский",
+    content: {
+      practiceExercises: [
+        "Напишите короткий абзац, представляя себя на английском языке.",
+        "Создайте пять предложений, используя разные времена глаголов.",
+        "Напишите диалог между двумя людьми, встречающимися впервые."
+      ]
+    }
+  }
 };
 
 const Module = () => {
@@ -148,7 +130,6 @@ const Module = () => {
 
   // Get current module data
   useEffect(() => {
-    const modules = getAllModules();
     if (id && modules[id]) {
       setCurrentModule(modules[id]);
     }
@@ -260,8 +241,10 @@ const Module = () => {
     setModuleCompleted(true);
     toast.success('Модуль завершен! Отличная работа!');
     
-    // Note: In a real app, this would be saved to backend
-    // For now, we just update local state
+    // Update module as completed (in a real app, this would be saved to backend)
+    if (currentModule) {
+      modules[currentModule.id.toString()].isCompleted = true;
+    }
   };
 
   const handleQuizModuleComplete = (score: number) => {

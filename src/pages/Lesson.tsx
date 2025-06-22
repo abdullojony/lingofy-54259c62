@@ -4,54 +4,43 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import ModuleCard from '../components/ModuleCard';
 import { Button } from '../components/ui/button';
-import { languageModules, subjectModules } from '../data/coursesData';
 
 const Lesson = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const language = searchParams.get('language');
-  const subject = searchParams.get('subject');
-  
-  // Determine which modules to show based on URL params
-  let modules: any[] = [];
-  let courseTitle = '';
-  
-  if (language) {
-    modules = languageModules[language.toLowerCase()] || [];
-    courseTitle = language;
-  } else if (subject) {
-    modules = subjectModules[subject.toLowerCase()] || [];
-    courseTitle = subject;
-  }
+  const subject = searchParams.get('language') || searchParams.get('subject') || 'english';
 
-  // If no modules found, show empty state instead of fallback
-  if (modules.length === 0) {
-    return (
-      <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
-        <NavBar />
-        
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-md p-6 mb-8 dark:bg-gray-800">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h1 className="text-3xl font-bold text-duolingo-dark dark:text-white">
-                    Курс не найден
-                  </h1>
-                  <p className="text-duolingo-dark/70 dark:text-gray-400 mt-2">
-                    К сожалению, для выбранного предмета пока нет доступных модулей
-                  </p>
-                </div>
-                <Button variant="outline" onClick={() => navigate('/')}>
-                  Назад к курсам
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Sample lesson modules
+  const modules = [
+    {
+      id: 1,
+      title: "Введение в грамматику",
+      type: "video" as const,
+      isCompleted: false,
+      isActive: true,
+    },
+    {
+      id: 2,
+      title: "Приветствия",
+      type: "reading" as const,
+      isCompleted: false,
+      isActive: true,
+    },
+    {
+      id: 3,
+      title: "Базовый тест",
+      type: "quiz" as const,
+      isCompleted: false,
+      isActive: true,
+    },
+    {
+      id: 4,
+      title: "Письменная практика",
+      type: "practice" as const,
+      isCompleted: false,
+      isActive: true,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
@@ -63,7 +52,7 @@ const Lesson = () => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-3xl font-bold text-duolingo-dark dark:text-white capitalize">
-                  Курс {courseTitle}
+                  Курс {subject}
                 </h1>
                 <p className="text-duolingo-dark/70 dark:text-gray-400 mt-2">
                   Завершите модули ниже, чтобы продвигаться в своем обучении
