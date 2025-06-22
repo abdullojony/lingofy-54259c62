@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
@@ -261,10 +260,8 @@ const Module = () => {
     setModuleCompleted(true);
     toast.success('Модуль завершен! Отличная работа!');
     
-    // Update module as completed (in a real app, this would be saved to backend)
-    if (currentModule) {
-      modules[currentModule.id.toString()].isCompleted = true;
-    }
+    // Note: In a real app, this would be saved to backend
+    // For now, we just update local state
   };
 
   const handleQuizModuleComplete = (score: number) => {
