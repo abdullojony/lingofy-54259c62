@@ -24,39 +24,33 @@ const Lesson = () => {
     courseTitle = subject;
   }
 
-  // Fallback to English modules if no specific course found
+  // If no modules found, show empty state instead of fallback
   if (modules.length === 0) {
-    modules = [
-      {
-        id: 1,
-        title: "Введение в грамматику",
-        type: "video" as const,
-        isCompleted: false,
-        isActive: true,
-      },
-      {
-        id: 2,
-        title: "Приветствия",
-        type: "reading" as const,
-        isCompleted: false,
-        isActive: true,
-      },
-      {
-        id: 3,
-        title: "Базовый тест",
-        type: "quiz" as const,
-        isCompleted: false,
-        isActive: true,
-      },
-      {
-        id: 4,
-        title: "Письменная практика",
-        type: "practice" as const,
-        isCompleted: false,
-        isActive: true,
-      },
-    ];
-    courseTitle = 'Английский';
+    return (
+      <div className="min-h-screen bg-duolingo-light dark:bg-gray-900">
+        <NavBar />
+        
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-md p-6 mb-8 dark:bg-gray-800">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h1 className="text-3xl font-bold text-duolingo-dark dark:text-white">
+                    Курс не найден
+                  </h1>
+                  <p className="text-duolingo-dark/70 dark:text-gray-400 mt-2">
+                    К сожалению, для выбранного предмета пока нет доступных модулей
+                  </p>
+                </div>
+                <Button variant="outline" onClick={() => navigate('/')}>
+                  Назад к курсам
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
